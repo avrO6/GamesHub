@@ -1,0 +1,11 @@
+:root{
+    --Negro: #000000;
+    --Naranja: #FFA500;
+    --Gris-oscuro: #333333;
+    --Blanco: #FFFFFF;
+    --Gris-claro: #CCCCCC;
+}
+
+body{
+    background-color: #333333;
+}
