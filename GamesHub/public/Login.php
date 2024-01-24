@@ -1,8 +1,48 @@
 
+
 <?php
+function comprobar_usuario($email, $passwd)
+{
+    $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
+    $usuario = "root";
+    $contraseña = "";
 
-    session_start();
+    try {
+        $db = new PDO($cadena_conexion, $usuario, $contraseña);
 
+//Gardamos la consulta en una variable la cual pregunta por el usuario y la clave obtenidas en el formulario
+        $consulta = "SELECT Rol, Name FROM usuarios WHERE Correo = '$email' AND passwd = '$passwd'";
+        //Ejecutamos la consulta
+        $resul = $db->query($consulta);
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+
+    //Si devuelve lineas significa que el usuario existe
+    if ($resul->rowCount() == 0) {
+        return false;
+    } else {
+
+        session_start();
+        $_SESSION["Correo"] = $_POST["correo"];
+        while ($row = $resul->fetch()) {
+            $_SESSION["Rol"] = $row["Rol"];
+            $_SESSION["Name"] = $row["Name"];
+        }
+        
+        return true;
+    }
+}
+
+if (isset($_POST["logear"])) {
+//Compruebo si el usuario existe y si es asi le redirijo a la pagina principal
+    if (comprobar_usuario($_POST['correo'], $_POST['passwd'])) {
+        header("Location: main.php"); 
+    } else {
+        echo "Las credenciales no coinciden";
+        $err = TRUE;     
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +61,7 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form>
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <h1>Crear Cuenta</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -30,14 +70,14 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span> Completa el formulario para crear tu cuenta </span>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Sign Up</button>
+                <input type="text" placeholder="Name" name="nombre">
+                <input type="email" placeholder="Email" name="mail">
+                <input type="password" placeholder="Password" name="contraseña">
+                <button name="registrar" type="submit">Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in">
-            <form>
+            <form method="POST" action="">
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -46,10 +86,10 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span> Completa el formulario para iniciar sesión </span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input type="email" placeholder="Email" name="correo" required>
+                <input type="password" placeholder="Password" name="passwd" required>
                 <a href="#">¿Has olvidado tu contraseña?</a>
-                <button>Sign In</button>
+                <button name="logear" type="POST">Sign In</button>
             </form>
         </div>
         <div class="toggle-container">
