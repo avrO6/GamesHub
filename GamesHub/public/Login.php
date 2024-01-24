@@ -15,7 +15,7 @@ function comprobar_usuario($email, $passwd)
     try {
         $db = new PDO($cadena_conexion, $usuario, $contraseña);
 
-//Gardamos la consulta en una variable la cual pregunta por el usuario y la clave obtenidas en el formulario
+        //Guardamos la consulta en una variable la cual pregunta por el usuario y la clave obtenidas en el formulario
         $consulta = "SELECT Rol, Name FROM usuarios WHERE Correo = '$email' AND passwd = '$passwd'";
         //Ejecutamos la consulta
         $resul = $db->query($consulta);
@@ -55,6 +55,7 @@ function comprobar_usuario($email, $passwd)
 
         
         $db->beginTransaction();
+
         $Nombre =$_POST["nombre"];
         $correo = $_POST["mail"];
         $contraseña = $_POST["contraseña"];

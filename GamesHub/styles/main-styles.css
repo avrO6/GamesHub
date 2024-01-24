@@ -6,6 +6,44 @@
     --Gris-claro: #CCCCCC;
 }
 
-body{
-    background-color: #333333;
+nav div{
+    display: flex;
+    justify-content: space-around;
 }
+
+.logo-img img{
+    width: 200px;
+    height: 100px;
+}
+
+.avatar-img img{
+    width: 80px;
+    height: 80px;
+}
+
+main{
+    display: flex;
+    gap: 10px;
+}
+
+aside{
+    width: 13%;
+    padding: 20px 0 0 20px;
+}
+section{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 50px;
+    padding: 50px;
+    margin-left: 10px;
+}
+.avatar-img{
+    display: flex;
+    gap: 20px;
+}
+
+.content-avatar a{
+    padding: 5px;
+}
+
