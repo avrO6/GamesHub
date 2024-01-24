@@ -1,6 +1,11 @@
 
 
 <?php
+    $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
+    $usuario = "root";
+    $contraseña = "";
+    $db = new PDO($cadena_conexion, $usuario, $contraseña);
+
 function comprobar_usuario($email, $passwd)
 {
     $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
@@ -34,15 +39,40 @@ function comprobar_usuario($email, $passwd)
     }
 }
 
-if (isset($_POST["logear"])) {
-//Compruebo si el usuario existe y si es asi le redirijo a la pagina principal
-    if (comprobar_usuario($_POST['correo'], $_POST['passwd'])) {
-        header("Location: main.php"); 
-    } else {
-        echo "Las credenciales no coinciden";
-        $err = TRUE;     
+    if (isset($_POST["logear"])) {
+    //Compruebo si el usuario existe y si es asi le redirijo a la pagina principal
+        if (comprobar_usuario($_POST['correo'], $_POST['passwd'])) {
+            header("Location: main.php"); 
+        } else {
+            echo "Las credenciales no coinciden";
+            $err = TRUE;     
+        }
     }
-}
+
+    if(isset($_POST["registrar"])){
+
+        try{
+
+        
+        $db->beginTransaction();
+        $Nombre =$_POST["nombre"];
+        $correo = $_POST["mail"];
+        $contraseña = $_POST["contraseña"];
+
+
+        $usuarios = $db->prepare("INSERT into usuarios(Name,correo,Rol,passwd) VALUES (:Name, :correo, 1, :passwd)");
+            
+            
+        $usuarios->execute(array(":Name" => $Nombre, ":correo" => $correo, ":passwd" => $contraseña));
+        $db->commit() ;  
+
+        }catch(PDOException $e){
+
+            $db->rollBack();
+            echo "<p>Error al crear usuario</p>";
+        }      
+    
+    }
 ?>
 
 <!DOCTYPE html>
