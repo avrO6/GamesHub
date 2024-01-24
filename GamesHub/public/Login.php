@@ -86,14 +86,14 @@ function comprobar_usuario($email, $passwd)
     <link rel="stylesheet" href="../styles/login-style.css">
     <title>Document</title>
 </head>
-<body data-bs-theme="light">
+<body data-bs-theme="dark">
 
     <button onclick="cambiarModo()" class="btn rounded-fill"><i class="fa-solid fa-circle-half-stroke"></i></button>
 
     <div class="container" id="container">
         <div class="form-container sign-up">
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                <h1>Crear Cuenta</h1>
+                <h1>Sing Up</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
