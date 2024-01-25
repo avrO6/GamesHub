@@ -87,9 +87,7 @@
 
                         echo('<a class="nav-link" href="login.php">Log in</a>');
                     }
-                                
-                                
-                
+                                                
                 ?>
                     
                 </div>
