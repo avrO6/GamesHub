@@ -107,14 +107,14 @@
                          $consulta->execute(array());
 
                          foreach ($consulta as $filas) {
-                          echo"  <div class='card' style='width: 18rem;'>
+                          echo" <form><div class='card' style='width: 18rem;'>
                             <img src='../img/".$filas["Nombre"].".png' class='card-img-top' alt='...'>
                             <div class='card-body'>
                               <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
                               <p class='card-text'>".$filas["Descripcion"]. "</p>
-                              <a href='#' class='btn btn-primary'>Añadir al carrito</a>
+                              <button type='submit'; class='btn btn-primary'>Añadir al carrito</button>
                             </div>
-                            </div>";
+                            </div></form> ";
                         }
                     ?>
         <!--             <div class="card" style="width: 18rem;">
