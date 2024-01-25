@@ -1,10 +1,14 @@
 <?php
-/*Para poder cerrar la sesion se deben eliminar todos los atributos del array de lasesion */
-$_SESSION = array();
-/*Además, se debe utilizar la función session_destroy(): */
+// Start or resume the session
+session_start();
+
+// Unset all session variables
+session_unset();
+
+// Destroy the session
 session_destroy();
-/*Por último, se elimina la cookie: */
-setcookie(session_name(),123,time()-1000);
-/*Finalmente el script lleva de nuevo al main: */
+
+// Redirect to the login page or any other desired page
 header("Location: main.php");
+exit();
 ?>

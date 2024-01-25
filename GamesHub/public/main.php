@@ -80,7 +80,9 @@
                 <div class="content-avatar">
                 <?php
 
-                    if (isset($_SESSION["Name"])) {
+                    session_start();
+
+                    if (isset($_SESSION["Rol"])) {
                         
                         echo('<a class="nav-link" href="logout.php">Log out</a>');
                     }else{
