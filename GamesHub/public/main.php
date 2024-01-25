@@ -89,7 +89,11 @@
 
                         echo('<a class="nav-link" href="login.php">Log in</a>');
                     }
-                                                
+                          
+                    $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
+                    $usuario = "root";
+                    $contraseña = "";
+                    $db = new PDO($cadena_conexion, $usuario, $contraseña);
                 ?>
                     
                 </div>
@@ -98,87 +102,30 @@
         </aside>
 
         <section>
+                    <?php 
+                         $consulta = $db->prepare("SELECT ID,Precio,Clave,Categoria,Descripcion,Nombre FROM productos");
+                         $consulta->execute(array());
 
-            <div class="card" style="width: 18rem;">
+                         foreach ($consulta as $filas) {
+                          echo"  <div class='card' style='width: 18rem;'>
+                            <img src='../img/".$filas["Nombre"].".png' class='card-img-top' alt='...'>
+                            <div class='card-body'>
+                              <h5 class='card-title'>".$filas["Nombre"]."</h5>
+                              <p class='card-text'>".$filas["Descripcion"]. "</p>
+                              <a href='#' class='btn btn-primary'>Añadir al carrito</a>
+                            </div>
+                            </div>";
+                        }
+                    ?>
+        <!--             <div class="card" style="width: 18rem;">
                 <img src="../img/logo.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">Card title</h5>
                   <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                   <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="card" style="width: 18rem;">
-                <img src="../img/logo.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem;">
-                <img src="../img/logo.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-
-            <div class="card" style="width: 18rem;">
-                <img src="../img/logo.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            
-            <div class="card" style="width: 18rem;">
-                <img src="../img/logo.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            
-            <div class="card" style="width: 18rem;">
-                <img src="../img/logo.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            
-            <div class="card" style="width: 18rem;">
-                <img src="../img/logo.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            
-            <div class="card" style="width: 18rem;">
-                <img src="../img/logo.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-            
-            <div class="card" style="width: 18rem;">
-                <img src="../img/logo.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
         </section>
 
     </main>
