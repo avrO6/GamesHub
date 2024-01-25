@@ -78,8 +78,20 @@
                 <img src="../img/usuario.png" alt="AVATAR">
 
                 <div class="content-avatar">
-                    <a class="nav-link" href="#">Log in</a>
-                    <a class="nav-link" href="#">Log out</a>
+                <?php
+
+                    if (isset($_SESSION["Name"])) {
+                        
+                        echo('<a class="nav-link" href="logout.php">Log out</a>');
+                    }else{
+
+                        echo('<a class="nav-link" href="login.php">Log in</a>');
+                    }
+                                
+                                
+                
+                ?>
+                    
                 </div>
 
             </div>
