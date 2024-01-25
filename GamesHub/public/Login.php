@@ -1,10 +1,5 @@
 
-
 <?php
-    $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
-    $usuario = "root";
-    $contraseña = "";
-    $db = new PDO($cadena_conexion, $usuario, $contraseña);
 
 function comprobar_usuario($email, $passwd)
 {
@@ -29,7 +24,7 @@ function comprobar_usuario($email, $passwd)
     } else {
 
         session_start();
-        $_SESSION["Correo"] = $_POST["correo"];
+        $_SESSION["Correo"] = $email;
         while ($row = $resul->fetch()) {
             $_SESSION["Rol"] = $row["Rol"];
             $_SESSION["Name"] = $row["Name"];
@@ -49,23 +44,36 @@ function comprobar_usuario($email, $passwd)
         }
     }
 
-    if(isset($_POST["registrar"])){
+    if (isset($_POST["registrar"])) {
+        //Compruebo si el usuario existe y si es asi le redirijo a la pagina principal
+            if (insertar_usuario($_POST['nombre'], $_POST['mail'], $_POST['contraseña'])) {
+                comprobar_usuario($_POST['mail'], $_POST['contraseña']);
+                header("Location: main.php"); 
+            } else {
+                echo "Algo ha salido mal, intentelo mas tarde.";
+                $err = TRUE;     
+            }
+        }
+
+    function insertar_usuario($Nombre, $correo, $passwd){
+
+        $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
+        $usuario = "root";
+        $contraseña = "";
 
         try{
 
+        $db = new PDO($cadena_conexion, $usuario, $contraseña);
         
         $db->beginTransaction();
-
-        $Nombre =$_POST["nombre"];
-        $correo = $_POST["mail"];
-        $contraseña = $_POST["contraseña"];
-
 
         $usuarios = $db->prepare("INSERT into usuarios(Name,correo,Rol,passwd) VALUES (:Name, :correo, 1, :passwd)");
             
             
-        $usuarios->execute(array(":Name" => $Nombre, ":correo" => $correo, ":passwd" => $contraseña));
+        $usuarios->execute(array(":Name" => $Nombre, ":correo" => $correo, ":passwd" => $passwd));
         $db->commit() ;  
+
+        comprobar_usuario($correo, $contraseña);
 
         }catch(PDOException $e){
 
