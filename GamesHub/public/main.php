@@ -82,7 +82,11 @@
 
                     session_start();
 
+<<<<<<< Updated upstream
                     if (isset($_SESSION["Rol"])) {
+=======
+                    if (isset($_SESSION["Name"])) {
+>>>>>>> Stashed changes
                         
                         echo('<a class="nav-link" href="logout.php">Log out</a>');
                     }else{
