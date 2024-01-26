@@ -48,9 +48,9 @@
                         </li>
                     </ul>
 
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Buscar por nombre" aria-label="Search">
-                        <button class="btn btn-outline-light" type="submit">Buscar</button>
+                    <form class="d-flex" role="search" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                        <input name="texto_bus" class="form-control me-2" type="text" placeholder="Buscar por nombre" aria-label="Search">
+                        <button name="buscador" class="btn btn-outline-light" type="submit">Buscar</button>
                     </form>
 
                 </div>
@@ -105,20 +105,37 @@
 
         <section>
                     <?php 
+                        if(isset($_POST["buscador"])){
+                            $nombre = $_POST["texto_bus"]."%";
+                            $consulta = $db->prepare( "SELECT ID, Precio, Clave, Categoria, Descripcion, Nombre FROM productos WHERE Nombre LIKE ?");
+                            $consulta->execute(array($nombre));
 
+                            foreach ($consulta as $filas) {
+                            echo" <div class='card' style='width: 18rem;'>
+                                <img src='../img/".$filas["Nombre"].".png' class='card-img-top' alt='...'>
+                                <div class='card-body'>
+                                <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
+                                <p class='card-text'>".$filas["Descripcion"]. "</p>
+                                <a  class='btn btn-primary'>Añadir al carrito</a>
+                                </div>
+                                </div> ";
+                            }
 
-                         $consulta = $db->prepare("SELECT ID,Precio,Clave,Categoria,Descripcion,Nombre FROM productos");
-                         $consulta->execute(array());
+                        }else{
 
-                         foreach ($consulta as $filas) {
-                          echo" <div class='card' style='width: 18rem;'>
-                            <img src='../img/".$filas["Nombre"].".png' class='card-img-top' alt='...'>
-                            <div class='card-body'>
-                              <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
-                              <p class='card-text'>".$filas["Descripcion"]. "</p>
-                              <a  class='btn btn-primary'>Añadir al carrito</a>
-                            </div>
-                            </div> ";
+                            $consulta = $db->prepare("SELECT ID,Precio,Clave,Categoria,Descripcion,Nombre FROM productos");
+                            $consulta->execute(array());
+
+                            foreach ($consulta as $filas) {
+                            echo" <div class='card' style='width: 18rem;'>
+                                <img src='../img/".$filas["Nombre"].".png' class='card-img-top' alt='...'>
+                                <div class='card-body'>
+                                <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
+                                <p class='card-text'>".$filas["Descripcion"]. "</p>
+                                <a  class='btn btn-primary'>Añadir al carrito</a>
+                                </div>
+                                </div> ";
+                            }
                         }
                     ?>
         <!--             <div class="card" style="width: 18rem;">
