@@ -78,13 +78,15 @@
                 <img src="../img/usuario.png" alt="AVATAR">
 
                 <div class="content-avatar">
+                
                 <?php
 
                     session_start();
 
+
                     if (isset($_SESSION["Rol"])) {
-                        
-                        echo('<a class="nav-link" href="logout.php">Log out</a>');
+                        echo ('<button class="btn btn-outline-light">' . $_SESSION["Puntos"]. ' gp</button>');
+                        echo('< class="nav-link" href="logout.php">Log out</ a>');
                     }else{
 
                         echo('<a class="nav-link" href="login.php">Log in</a>');
@@ -103,6 +105,8 @@
 
         <section>
                     <?php 
+
+
                          $consulta = $db->prepare("SELECT ID,Precio,Clave,Categoria,Descripcion,Nombre FROM productos");
                          $consulta->execute(array());
 
