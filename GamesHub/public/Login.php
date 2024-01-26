@@ -145,7 +145,7 @@ function comprobar_usuario($email, $passwd)
                 <div class="toggle-panel toggle-right">
                     <h1>Hello, Friend!</h1>
                     <p>
-                        Regístrese con sus datos personales para utilizar todas las funciones de la Web y gane 400 GP (GamesHub Points)
+                        Regístrese con sus datos personales para utilizar todas las funciones de la Web y gane 400 GP (GamesHub Points).
                     </p>
                     <button class="hidden" id="register">Sign Up</button>
                 </div>
