@@ -104,7 +104,7 @@
         <section>
                     <?php       
 
-
+                        if(isset($_GET["redirigido"] )){
                         
                             $consulta = $db->prepare("SELECT ID,Precio,Clave,Categoria,Descripcion,Nombre FROM productos Where Categoria =? ");
                             $consulta->execute(array( $_GET["redirigido"] ));
@@ -119,7 +119,10 @@
                                 </div>
                                 </div> ";
                             }
-                        
+                        }
+                        else{
+                            header("location:../public/main.php");
+                        }
                     ?>
         <!--             <div class="card" style="width: 18rem;">
                 <img src="../img/logo.png" class="card-img-top" alt="...">
