@@ -11,7 +11,7 @@ function comprobar_usuario($email, $passwd)
         $db = new PDO($cadena_conexion, $usuario, $contraseña);
 
         //Guardamos la consulta en una variable la cual pregunta por el usuario y la clave obtenidas en el formulario
-        $consulta = "SELECT Rol, Name FROM usuarios WHERE Correo = '$email' AND passwd = '$passwd'";
+        $consulta = "SELECT Rol, Name, puntos FROM usuarios WHERE Correo = '$email' AND passwd = '$passwd'";
         //Ejecutamos la consulta
         $resul = $db->query($consulta);
     } catch (PDOException $e) {
@@ -28,6 +28,7 @@ function comprobar_usuario($email, $passwd)
         while ($row = $resul->fetch()) {
             $_SESSION["Rol"] = $row["Rol"];
             $_SESSION["Name"] = $row["Name"];
+            $_SESSION["Puntos"] = $row["puntos"];
         }
         
         return true;
