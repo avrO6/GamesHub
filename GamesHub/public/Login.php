@@ -67,18 +67,19 @@ function comprobar_usuario($email, $passwd)
         
         $db->beginTransaction();
 
-        $usuarios = $db->prepare("INSERT into usuarios(Name,correo,Rol,passwd) VALUES (:Name, :correo, 1, :passwd)");
+        $usuarios = $db->prepare("INSERT into usuarios(Name, correo, Rol, passwd, puntos) VALUES (:Name, :correo, 1, :passwd, 400)");
             
             
         $usuarios->execute(array(":Name" => $Nombre, ":correo" => $correo, ":passwd" => $passwd));
         $db->commit() ;  
 
-        comprobar_usuario($correo, $contraseña);
+        return true;
 
         }catch(PDOException $e){
 
             $db->rollBack();
             echo "<p>Error al crear usuario</p>";
+            return false;
         }      
     
     }
