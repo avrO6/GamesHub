@@ -17,20 +17,62 @@
 
         <section class="shopping-cart dark">
 
-            <div class="productos">
-
-                
-
+            <div class="volver">
+                <a href="main.php"><-- Seguir comprando</a>
             </div>
 
-            <div class="sumary">
+            <div class="productos">
 
+                <div class="producto">
+                    <img src="../img/gta VI.png" alt="Producto.">
+                    <span><b>GTA VI</b></span>
+                </div>
 
+                <div class="sumary">
+                    <span>"2"</span>
+                    <span>$$$</span>
+                    <button type="submit"><img src="../img/borrar.png" alt=""></button>
+                </div>
 
+            </div>
+            <div class="productos">
+
+                <div class="producto">
+                    <img src="../img/gta VI.png" alt="Producto.">
+                    <span><b>GTA VI</b></span>
+                </div>
+
+                <div class="sumary">
+                    <span>"2"</span>
+                    <span>$$$</span>
+                    <button type="submit"><img src="../img/borrar.png" alt=""></button>
+                </div>
+
+            </div>
+            <div class="productos">
+
+                <div class="producto">
+                    <img src="../img/gta VI.png" alt="Producto.">
+                    <span><b>GTA VI</b></span>
+                </div>
+
+                <div class="sumary">
+                    <span>"2"</span>
+                    <span>$$$</span>
+                    <button type="submit"><img src="../img/borrar.png" alt=""></button>
+                </div>
 
             </div>
 
         </section>
+
+        <aside>
+
+            <div class="checking">
+
+            </div>
+
+        </aside>
 
     </main>
 
