@@ -32,19 +32,19 @@
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active nav-size" aria-current="page" href="">Explorar</a>
+                            <a class="nav-link active nav-size" aria-current="page" href="../public/main.php">Explorar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-size" href="../php/productos.php?redirigido=1">Sistemas Operativos</a>
+                            <a class="nav-link nav-size" href="productos.php?redirigido=1">Sistemas Operativos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-size" href="../php/productos.php?redirigido=2">Juegos</a>
+                            <a class="nav-link nav-size" href="productos.php?redirigido=2">Juegos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-size" href="../php/productos.php?redirigido=3">Licencias</a>
+                            <a class="nav-link nav-size" href="productos.php?redirigido=3">Licencias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-size" href="../php/productos.php?redirigido=4">Targetas regalo</a>
+                            <a class="nav-link nav-size" href="productos.php?redirigido=4">Targetas regalo</a>
                         </li>
                     </ul>
 
@@ -78,14 +78,12 @@
                 <img src="../img/usuario.png" alt="AVATAR">
 
                 <div class="content-avatar">
-                
                 <?php
 
                     session_start();
 
-
                     if (isset($_SESSION["Rol"])) {
-                        echo ('<button class="btn btn-outline-light">' . $_SESSION["Puntos"]. ' GP</button>');
+                        
                         echo('<a class="nav-link" href="logout.php">Log out</a>');
                     }else{
 
@@ -104,21 +102,26 @@
         </aside>
 
         <section>
-                    <?php 
+                    <?php       
 
+                        if(isset($_GET["redirigido"] )){
+                        
+                            $consulta = $db->prepare("SELECT ID,Precio,Clave,Categoria,Descripcion,Nombre FROM productos Where Categoria =? ");
+                            $consulta->execute(array( $_GET["redirigido"] ));
 
-                         $consulta = $db->prepare("SELECT ID,Precio,Clave,Categoria,Descripcion,Nombre FROM productos");
-                         $consulta->execute(array());
-
-                         foreach ($consulta as $filas) {
-                          echo" <div class='card' style='width: 18rem;'>
-                            <img src='../img/".$filas["Nombre"].".png' class='card-img-top' alt='...'>
-                            <div class='card-body'>
-                              <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
-                              <p class='card-text'>".$filas["Descripcion"]. "</p>
-                              <a  class='btn btn-primary'>Añadir al carrito</a>
-                            </div>
-                            </div> ";
+                            foreach ($consulta as $filas) {
+                            echo" <div class='card' style='width: 18rem;'>
+                                <img src='../img/".$filas["Nombre"].".png' class='card-img-top' alt='...'>
+                                <div class='card-body'>
+                                <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
+                                <p class='card-text'>".$filas["Descripcion"]. "</p>
+                                <a  class='btn btn-primary'>Añadir al carrito</a>
+                                </div>
+                                </div> ";
+                            }
+                        }
+                        else{
+                            header("location:../public/main.php");
                         }
                     ?>
         <!--             <div class="card" style="width: 18rem;">
