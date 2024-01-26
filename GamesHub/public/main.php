@@ -85,8 +85,8 @@
 
 
                     if (isset($_SESSION["Rol"])) {
-                        echo ('<button class="btn btn-outline-light">' . $_SESSION["Puntos"]. ' gp</button>');
-                        echo('< class="nav-link" href="logout.php">Log out</ a>');
+                        echo ('<button class="btn btn-outline-light">' . $_SESSION["Puntos"]. ' GP</button>');
+                        echo('<a class="nav-link" href="logout.php">Log out</a>');
                     }else{
 
                         echo('<a class="nav-link" href="login.php">Log in</a>');
