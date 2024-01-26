@@ -69,7 +69,23 @@
         <aside>
 
             <div class="checking">
+                <h3>Resumen</h3>
 
+                <div class="subtotal">
+                    <span>Subtotal</span>
+                    <span>$$$</span>
+                </div>
+
+                <div class="discount">
+                    <span>Descuento</span>
+                    <span>$$$</span>
+                </div>
+
+                <div class="total">
+                    <span>Total</span>
+                    <span>$$$</span>
+                </div>
+                
             </div>
 
         </aside>
