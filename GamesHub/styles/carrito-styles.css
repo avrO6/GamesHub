@@ -118,6 +118,7 @@ aside span{
     width: 100%;
     justify-content: space-between;
     padding: 5px;
+    border-bottom: 1px solid var(--Negro);
 }
 
 
