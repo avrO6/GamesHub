@@ -25,14 +25,6 @@ section{
     border-radius: 5px;
 }
 
-aside{
-    margin: 10px;
-    width: 30%;
-    background-color: var(--Naranja);
-    box-shadow: 0 0 20px rgba(86, 86, 86, 0.8); 
-    border-radius: 8px;
-}
-
 .volver{    
     border-bottom: 2px solid var(--Gris-claro);
     margin: 5px;
@@ -82,6 +74,46 @@ aside{
 .sumary button img{
     width: 30px;
     height: 30px;
+}
+
+aside{
+    margin: 80px 0 0 10px;
+    width: 30%;
+    height: 300px;
+    background-color: var(--Gris-claro);
+    color: var(--Gris-oscuro);
+    box-shadow: 0 0 20px rgba(86, 86, 86, 0.8); 
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.checking{
+    margin: 5px;
+}
+.checking a{
+    width: 100%;
+    height: 40px;
+    padding: 3px;
+    margin-top: 78px;
+    border-radius: 8px;
+    font-weight: 600;
+    padding-top: 7px;
+}
+
+aside h3{
+    text-align: center;
+    margin: 20px;
+    font-weight: bold;
+}
+aside span{
+    display: inline-block;
+}
+
+.resum{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 5px;
 }
 
 
