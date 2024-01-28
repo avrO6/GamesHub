@@ -22,8 +22,7 @@ section{
     margin: 10px;
     width: 70%;
     height: calc(100vh - 20px);
-    border-radius: 10px;
-    background-color: #333333;
+    border-radius: 5px;
 }
 
 aside{
@@ -31,7 +30,7 @@ aside{
     width: 30%;
     background-color: var(--Naranja);
     box-shadow: 0 0 20px rgba(86, 86, 86, 0.8); 
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .volver{    
@@ -50,7 +49,7 @@ aside{
     margin: 10px;
     padding: 10px;
     display: flex;
-    border-radius: 10px;
+    border-radius: 8px;
     background-color: rgb(99, 99, 99)333;
     box-shadow: 0 0 20px rgba(86, 86, 86, 0.8); 
     justify-content: space-between;
