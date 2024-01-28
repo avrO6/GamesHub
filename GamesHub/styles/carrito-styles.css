@@ -45,6 +45,10 @@ section{
     background-color: rgb(99, 99, 99)333;
     box-shadow: 0 0 20px rgba(86, 86, 86, 0.8); 
     justify-content: space-between;
+    transition: .5s linear;
+}
+.productos:hover{
+    box-shadow: 0 0 20px rgba(163, 163, 163, 0.8); 
 }
 
 
