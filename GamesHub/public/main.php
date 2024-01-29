@@ -106,7 +106,7 @@
         <section>
                     <?php 
                         if(isset($_POST["buscador"])){
-                            $nombre = $_POST["texto_bus"]."%";
+                            $nombre = "%".$_POST["texto_bus"]."%";
                             $consulta = $db->prepare( "SELECT ID, Precio, Clave, Categoria, Descripcion, Nombre FROM productos WHERE Nombre LIKE ?");
                             $consulta->execute(array($nombre));
 
