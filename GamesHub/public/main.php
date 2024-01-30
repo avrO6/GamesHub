@@ -116,7 +116,7 @@
                                 <div class='card-body'>
                                 <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
                                 <p class='card-text'>".$filas["Descripcion"]. "</p>
-                                <button name='carrito' type='submit' class='btn btn-primary'>Añadir al carrito</button>
+                                <button name='carrito   ' type='submit' class='btn btn-primary'>Añadir al carrito</button>
                                 </div>
                                 </div></form>  ";
                             }
