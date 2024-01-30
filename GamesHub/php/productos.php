@@ -106,7 +106,7 @@
 
                         if(isset($_POST["buscador"])){
                             $nombre = "%".$_POST["texto_bus"]."%";
-                            $consulta = $db->prepare( "SELECT ID, Precio, Clave, Categoria, Descripcion, Nombre FROM productos WHERE Nombre LIKE ?");
+                            $consulta = $db->prepare( "SELECT ID, Precio, Categoria, Descripcion, Nombre FROM productos WHERE Nombre LIKE ?");
                             $consulta->execute(array($nombre));
 
                             foreach ($consulta as $filas) {
@@ -124,7 +124,7 @@
 
                             if(isset($_GET["redirigido"] )){
                             
-                                $consulta = $db->prepare("SELECT ID,Precio,Clave,Categoria,Descripcion,Nombre FROM productos Where Categoria =? ");
+                                $consulta = $db->prepare("SELECT ID,Precio,Categoria,Descripcion,Nombre FROM productos Where Categoria =? ");
                                 $consulta->execute(array( $_GET["redirigido"] ));
 
                                 foreach ($consulta as $filas) {
