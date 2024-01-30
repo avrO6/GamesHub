@@ -20,35 +20,37 @@ main{
 
 section{
     margin: 10px;
-    border: 2px solid white;
     width: 70%;
     height: calc(100vh - 20px);
-    border-radius: 10px;
-    background-color: #333333;
-}
-
-aside{
-    margin: 10px;
-    width: 30%;
-    background-color: var(--Naranja);
-    box-shadow: 0 0 20px rgba(86, 86, 86, 0.8); 
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .volver{    
-    border-bottom: 1px solid white;
+    border-bottom: 2px solid var(--Gris-claro);
     margin: 5px;
     padding: 20px;
+}
+.volver a{
+    text-decoration: none;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--Blanco);
+    font-weight: bolder;
 }
 
 .productos{
     margin: 10px;
     padding: 10px;
     display: flex;
-    border-radius: 10px;
-    background-color: gray;
+    border-radius: 8px;
+    background-color: rgb(99, 99, 99)333;
     box-shadow: 0 0 20px rgba(86, 86, 86, 0.8); 
+    justify-content: space-between;
+    transition: .5s linear;
 }
+.productos:hover{
+    box-shadow: 0 0 20px rgba(163, 163, 163, 0.8); 
+}
+
 
 .producto img{
     width: 200px;
@@ -56,18 +58,67 @@ aside{
     border-radius: 10px;
 }
 .producto span{
-    margin: 5px;
-    position: relative;
-    bottom: 30px;
+    margin: auto;
+}
+
+.sumary{
+    display: flex;
+    width: 200px;
 }
 
 .sumary button{
     background: none;
     border: none;
+    margin: auto;
+}
+.sumary span{
+    margin: auto;
+    font-weight: bolder;
 }
 .sumary button img{
     width: 30px;
     height: 30px;
+}
+
+aside{
+    margin: 80px 0 0 10px;
+    width: 30%;
+    height: 300px;
+    background-color: var(--Gris-claro);
+    color: var(--Gris-oscuro);
+    box-shadow: 0 0 20px rgba(86, 86, 86, 0.8); 
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.checking{
+    margin: 5px;
+}
+.checking a{
+    width: 100%;
+    height: 40px;
+    padding: 3px;
+    margin-top: 78px;
+    border-radius: 8px;
+    font-weight: 600;
+    padding-top: 7px;
+}
+
+aside h3{
+    text-align: center;
+    margin: 20px;
+    font-weight: bold;
+}
+aside span{
+    display: inline-block;
+}
+
+.resum{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 5px;
+    border-bottom: 1px solid var(--Negro);
 }
 
 

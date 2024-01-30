@@ -75,4 +75,12 @@ section{
 
 .nav-size{
     font-size: larger;
+
 }
+
+
+.card-text{
+    height: 200px;
+    overflow: scroll;
+}
+

@@ -70,6 +70,25 @@
 
             <div class="checking">
 
+                <h3>Resumen</h3>
+
+                <div class="resum">
+                    <span>Subtotal</span>
+                    <span>$$$</span>
+                </div>
+
+                <div class="resum">
+                    <span>Descuento</span>
+                    <span>$$$</span>
+                </div>
+
+                <div class="resum">
+                    <span>Total</span>
+                    <span>$$$</span>
+                </div>
+
+                <a  class='btn btn-primary'>Checkout</a>
+                
             </div>
 
         </aside>

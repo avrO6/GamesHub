@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>GamesHub</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -106,19 +106,19 @@
         <section>
                     <?php 
                         if(isset($_POST["buscador"])){
-                            $nombre = $_POST["texto_bus"]."%";
+                            $nombre = "%".$_POST["texto_bus"]."%";
                             $consulta = $db->prepare( "SELECT ID, Precio, Clave, Categoria, Descripcion, Nombre FROM productos WHERE Nombre LIKE ?");
                             $consulta->execute(array($nombre));
 
                             foreach ($consulta as $filas) {
-                            echo" <div class='card' style='width: 18rem;'>
+                            echo"<form action=main.php method='POST'> <div class='card' style='width: 18rem;'>
                                 <img src='../img/".$filas["Nombre"].".png' class='card-img-top' alt='...'>
                                 <div class='card-body'>
                                 <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
                                 <p class='card-text'>".$filas["Descripcion"]. "</p>
-                                <a  class='btn btn-primary'>Añadir al carrito</a>
+                                <button name='carrito' type='submit' class='btn btn-primary'>Añadir al carrito</button>
                                 </div>
-                                </div> ";
+                                </div></form>  ";
                             }
 
                         }else{
@@ -127,15 +127,16 @@
                             $consulta->execute(array());
 
                             foreach ($consulta as $filas) {
-                            echo" <div class='card' style='width: 18rem;'>
-                                <img src='../img/".$filas["Nombre"].".png' class='card-img-top' alt='...'>
-                                <div class='card-body'>
-                                <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
-                                <p class='card-text'>".$filas["Descripcion"]. "</p>
-                                <a  class='btn btn-primary'>Añadir al carrito</a>
-                                </div>
-                                </div> ";
-                            }
+                                echo"<form action=main.php method='POST'> <div class='card' style='width: 18rem;'>
+                                    <img src='../img/".$filas["Nombre"].".png' class='card-img-top' alt='...'>
+                                    <div class='card-body'>
+                                    <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
+                                    <p class='card-text'>".$filas["Descripcion"]. "</p>
+                                    <button type='submit' class='btn btn-primary'>Añadir al carrito</button>
+                                    </div>
+                                    </div></form>  ";
+                                }
+    
                         }
                     ?>
         <!--             <div class="card" style="width: 18rem;">
