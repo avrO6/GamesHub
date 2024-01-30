@@ -49,6 +49,10 @@
                     </ul>
 
                     <form class="d-flex" role="search" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                        <div class="carrito">
+                            <a href="carrito.php"><img src="../img/carrito-de-compras.png" alt=""></a>
+                        </div>
+                        
                         <input name="texto_bus" class="form-control me-2" type="text" placeholder="Buscar por nombre" aria-label="Search">
                         <button name="buscador" class="btn btn-outline-light" type="submit">Buscar</button>
                     </form>
