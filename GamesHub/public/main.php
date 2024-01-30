@@ -49,10 +49,6 @@
                     </ul>
 
                     <form class="d-flex" role="search" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
-                        <div class="carrito">
-                            <a href="carrito.php"><img src="../img/carrito-de-compras.png" alt=""></a>
-                        </div>
-                        
                         <input name="texto_bus" class="form-control me-2" type="text" placeholder="Buscar por nombre" aria-label="Search">
                         <button name="buscador" class="btn btn-outline-light" type="submit">Buscar</button>
                     </form>
@@ -120,7 +116,7 @@
                                 <div class='card-body'>
                                 <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
                                 <p class='card-text'>".$filas["Descripcion"]. "</p>
-                                <button name='carrito   ' type='submit' class='btn btn-primary'>Añadir al carrito</button>
+                                <button value=".$filas["ID"]." name='carrito   ' type='submit' class='btn btn-primary'>Añadir al carrito</button>
                                 </div>
                                 </div></form>  ";
                             }
@@ -136,7 +132,7 @@
                                     <div class='card-body'>
                                     <h5 class='card-title'>".$filas["Nombre"]."&nbsp&nbsp&nbsp".$filas["Precio"]."€"."</h5>
                                     <p class='card-text'>".$filas["Descripcion"]. "</p>
-                                    <button type='submit' class='btn btn-primary'>Añadir al carrito</button>
+                                    <button  value=".$filas["ID"]." name='carrito' type='submit' class='btn btn-primary'>Añadir al carrito</button>
                                     </div>
                                     </div></form>  ";
                                 }
