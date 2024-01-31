@@ -39,10 +39,10 @@
                 <a href="main.php"><-- Seguir comprando</a>
             </div>
 
-<<<<<<< Updated upstream
+
             <!-- Dinamico aqui -->
             <div class="productos">
-=======
+
             <?php 
                 foreach ($arr1 as $clave => $valor) {
                     // Aquí puedes usar $clave como tu ID en una consulta
@@ -72,7 +72,7 @@
             ?>
 
 <!--             <div class="productos">
->>>>>>> Stashed changes
+
 
                 <div class="producto">
                     <img src="../img/gta VI.png" alt="Producto.">
@@ -90,7 +90,7 @@
 =======
             </div> -->
 
->>>>>>> Stashed changes
+
 
         </section>
 
