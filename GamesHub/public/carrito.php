@@ -21,34 +21,7 @@
                 <a href="main.php"><-- Seguir comprando</a>
             </div>
 
-            <div class="productos">
-
-                <div class="producto">
-                    <img src="../img/gta VI.png" alt="Producto.">
-                    <span><b>GTA VI</b></span>
-                </div>
-
-                <div class="sumary">
-                    <span>"2"</span>
-                    <span>$$$</span>
-                    <button type="submit"><img src="../img/borrar.png" alt=""></button>
-                </div>
-
-            </div>
-            <div class="productos">
-
-                <div class="producto">
-                    <img src="../img/gta VI.png" alt="Producto.">
-                    <span><b>GTA VI</b></span>
-                </div>
-
-                <div class="sumary">
-                    <span>"2"</span>
-                    <span>$$$</span>
-                    <button type="submit"><img src="../img/borrar.png" alt=""></button>
-                </div>
-
-            </div>
+            <!-- Dinamico aqui -->
             <div class="productos">
 
                 <div class="producto">
