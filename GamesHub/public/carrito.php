@@ -1,15 +1,13 @@
 <?php 
     session_start();
+
     $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
     $usuario = "root";
     $contraseña = "";
     $db = new PDO($cadena_conexion, $usuario, $contraseña);
 
-        $arr1 = [
-            2 => 2,
-            1 => 3,
-            3 => 1,
-        ];
+    
+        $arr1 = $_SESSION["Carrito"];
     
        
 
@@ -62,7 +60,7 @@
                         </div>
                         <div class='sumary'>
                             <span>'".$valor."'</span>
-                            <span>".$producto["Precio"]."€</span>
+                            <span>".$valor*($producto["Precio"])."€</span>
                             <button type='submit'><img src='../img/borrar.png' alt=''></button>
                         </div>
 
