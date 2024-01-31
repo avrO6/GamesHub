@@ -1,3 +1,21 @@
+<?php 
+    session_start();
+    $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
+    $usuario = "root";
+    $contraseña = "";
+    $db = new PDO($cadena_conexion, $usuario, $contraseña);
+
+        $arr1 = [
+            2 => 2,
+            1 => 3,
+            3 => 1,
+        ];
+    
+       
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,8 +39,40 @@
                 <a href="main.php"><-- Seguir comprando</a>
             </div>
 
+<<<<<<< Updated upstream
             <!-- Dinamico aqui -->
             <div class="productos">
+=======
+            <?php 
+                foreach ($arr1 as $clave => $valor) {
+                    // Aquí puedes usar $clave como tu ID en una consulta
+                    
+                
+                    $consulta = $db->prepare( "SELECT ID, Precio, Categoria, Nombre FROM productos WHERE id = ?");
+                    $consulta->execute(array($clave));
+                    // Tu lógica de consulta aquí, por ejemplo:
+                    // $consulta = "SELECT * FROM tu_tabla WHERE id = $clave";
+                    // Ejecutar la consulta...
+
+                    $producto = $consulta->fetch();
+
+                        echo "<div class='productos'>
+                        <div class='producto'>
+                            <img src='../img/".$producto["Nombre"].".png' alt='Producto.'>
+                            <span><b>".$producto["Nombre"]."</b></span>
+                        </div>
+                        <div class='sumary'>
+                            <span>'".$valor."'</span>
+                            <span>".$producto["Precio"]."€</span>
+                            <button type='submit'><img src='../img/borrar.png' alt=''></button>
+                        </div>
+
+                        </div>";
+                }
+            ?>
+
+<!--             <div class="productos">
+>>>>>>> Stashed changes
 
                 <div class="producto">
                     <img src="../img/gta VI.png" alt="Producto.">
@@ -35,7 +85,12 @@
                     <button type="submit"><img src="../img/borrar.png" alt=""></button>
                 </div>
 
+<<<<<<< Updated upstream
             </div>
+=======
+            </div> -->
+
+>>>>>>> Stashed changes
 
         </section>
 
@@ -73,3 +128,5 @@
 </body>
 
 </html>
+
+
