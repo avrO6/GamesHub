@@ -76,7 +76,6 @@
 
 <!--             <div class="productos">
 
-
                 <div class="producto">
                     <img src="../img/gta VI.png" alt="Producto.">
                     <span><b>GTA VI</b></span>
@@ -88,9 +87,7 @@
                     <button type="submit"><img src="../img/borrar.png" alt=""></button>
                 </div>
 
-<<<<<<< Updated upstream
-            </div>
-=======
+
             </div> -->
 
 
@@ -101,24 +98,39 @@
 
             <div class="checking">
 
-                <h3>Resumen</h3>
+                <form action="" method="post">
 
-                <div class="resum">
-                    <span>Subtotal</span>
-                    <span>$$$</span>
-                </div>
+                    <h3>Resumen</h3>
 
-                <div class="resum">
-                    <span>Descuento</span>
-                    <span>$$$</span>
-                </div>
+                    <div class="resum">
+                        <span>Subtotal</span>
+                        <span>$$$</span>
+                    </div>
 
-                <div class="resum">
-                    <span>Total</span>
-                    <span>$$$</span>
-                </div>
+                    <div class="resum">
+                        <span>PG</span>
+                        <span>XXXX</span>
+                    </div>
 
-                <a  class='btn btn-primary'>Checkout</a>
+                    <div class="resum">
+                        <span>Descuento</span>
+                        <span>$$$</span>
+                    </div>
+
+                    <div class="resum">
+                        <span>Total</span>
+                        <span>$$$</span>
+                    </div>
+
+                    <form action="">
+                        <div class="resum">
+                            <input type="checkbox" name="descuento"> Aplicar descuento
+                        </div>
+                    </form>
+
+                    <button type="submit" class='btn btn-primary'>Checkout</button>
+
+                </form>
                 
             </div>
 
