@@ -1,6 +1,9 @@
 <?php 
     session_start();
 
+    if(!isset($_SESSION["Carrito"])){
+        header("location: Login.php?carro=true");
+    }
     $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
     $usuario = "root";
     $contraseña = "";
@@ -8,7 +11,11 @@
 
     
         $arr1 = $_SESSION["Carrito"];
-    
+
+    if(isset($_POST["eliminar"])){
+        unset($_SESSION["Carrito"][$_POST['eliminar']]);
+         header("location:./carrito.php");  
+    }
        
 
 
@@ -53,7 +60,7 @@
 
                     $producto = $consulta->fetch();
 
-                        echo "<div class='productos'>
+                        echo "<form action=" .htmlspecialchars($_SERVER["PHP_SELF"]) . " method='post'><div class='productos'>
                         <div class='producto'>
                             <img src='../img/".$producto["Nombre"].".png' alt='Producto.'>
                             <span><b>".$producto["Nombre"]."</b></span>
@@ -61,10 +68,9 @@
                         <div class='sumary'>
                             <span>'".$valor."'</span>
                             <span>".$valor*($producto["Precio"])."€</span>
-                            <button type='submit'><img src='../img/borrar.png' alt=''></button>
+                            <button value='".$clave."' name='eliminar' type='submit'><img src='../img/borrar.png' alt=''></button>
                         </div>
-
-                        </div>";
+                        </div></form>";
                 }
             ?>
 
