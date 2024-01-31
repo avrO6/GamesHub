@@ -29,7 +29,7 @@ function comprobar_usuario($email, $passwd)
             $_SESSION["Rol"] = $row["Rol"];
             $_SESSION["Name"] = $row["Name"];
             $_SESSION["Puntos"] = $row["puntos"];
-            $_SESSION["Carrito"][0] = "prueba";
+            $_SESSION["Carrito"] = [];
         }
         
         return true;
