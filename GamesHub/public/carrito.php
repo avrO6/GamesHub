@@ -41,7 +41,6 @@
 
 
             <!-- Dinamico aqui -->
-            <div class="productos">
 
             <?php 
                 foreach ($arr1 as $clave => $valor) {
