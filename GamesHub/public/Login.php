@@ -2,7 +2,9 @@
 <?php
 
 if(isset($_GET["carro"])){
-    echo "<p>Inicia Sesion para acceder al carro</p>";
+    echo "
+        <p>Inicia Sesion para acceder al carro</p>
+    ";
 }
 
 function comprobar_usuario($email, $passwd)
