@@ -16,8 +16,7 @@
         unset($_SESSION["Carrito"][$_POST['eliminar']]);
          header("location:./carrito.php");  
     }
-       
-
+    $precio_total = 0
 
 ?>
 
@@ -50,7 +49,6 @@
             <?php 
                 foreach ($arr1 as $clave => $valor) {
                     // Aquí puedes usar $clave como tu ID en una consulta
-                    
                 
                     $consulta = $db->prepare( "SELECT ID, Precio, Categoria, Nombre FROM productos WHERE id = ?");
                     $consulta->execute(array($clave));
@@ -58,8 +56,11 @@
                     // $consulta = "SELECT * FROM tu_tabla WHERE id = $clave";
                     // Ejecutar la consulta...
 
+                    
                     $producto = $consulta->fetch();
 
+                    $precio_prod = $valor*($producto["Precio"]);
+                    
                         echo "<form action=" .htmlspecialchars($_SERVER["PHP_SELF"]) . " method='post'><div class='productos'>
                         <div class='producto'>
                             <img src='../img/".$producto["Nombre"].".png' alt='Producto.'>
@@ -67,10 +68,12 @@
                         </div>
                         <div class='sumary'>
                             <span>'".$valor."'</span>
-                            <span>".$valor*($producto["Precio"])."€</span>
+                            <span>". $precio_prod."€</span>
                             <button value='".$clave."' name='eliminar' type='submit'><img src='../img/borrar.png' alt=''></button>
                         </div>
                         </div></form>";
+                    
+                    $precio_total = $precio_total + $precio_prod;
                 }
             ?>
 
@@ -100,7 +103,40 @@
 
                 <form action="" method="post">
 
-                    <h3>Resumen</h3>
+                    <?php
+                        echo "                    
+                        <h3>Resumen</h3>
+
+                        <div class='resum'>
+                            <span>Subtotal</span>
+                            <span>".$precio_total."</span>
+                        </div>
+    
+                        <div class='resum'>
+                            <span>PG</span>
+                            <span>".$_SESSION['Puntos']."</span>
+                        </div>
+
+                        <form action=''>
+                            <div class='resum'>
+                                <input type='checkbox' name='descuento'> Aplicar descuento
+                            </div>
+                        </form>
+    
+                        <div class='resum'>
+                            <span>Descuento</span>
+                            <span>$$$</span>
+                        </div>
+    
+                        <div class='resum'>
+                            <span>Total</span>
+                            <span>$$$</span>
+                        </div>
+    
+                        <button type='submit' class='btn btn-primary'>Checkout</button>";
+                    ?>
+
+<!--                     <h3>Resumen</h3>
 
                     <div class="resum">
                         <span>Subtotal</span>
@@ -128,7 +164,7 @@
                         </div>
                     </form>
 
-                    <button type="submit" class='btn btn-primary'>Checkout</button>
+                    <button type="submit" class='btn btn-primary'>Checkout</button> -->
 
                 </form>
                 
