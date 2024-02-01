@@ -217,3 +217,8 @@ body{
 .container.active .toggle-right{
     transform: translateX(200%);
 }
+
+.icon img{
+    width: 30px;
+    height: 30px;
+}

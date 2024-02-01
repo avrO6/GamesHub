@@ -112,10 +112,7 @@ function comprobar_usuario($email, $passwd)
             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                 <h1>Sing Up</h1>
                 <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="main.php" class="icon"><img src="../img/hogar.png" alt=""></a>
                 </div>
                 <span> Completa el formulario para crear tu cuenta </span>
                 <input type="text" placeholder="Name" name="nombre" required>
@@ -128,10 +125,7 @@ function comprobar_usuario($email, $passwd)
             <form method="POST" action="">
                 <h1>Sign In</h1>
                 <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="main.php" class="icon"><img src="../img/hogar.png" alt=""></a>
                 </div>
                 <span> Completa el formulario para iniciar sesión </span>
                 <input type="email" placeholder="Email" name="correo" required>
