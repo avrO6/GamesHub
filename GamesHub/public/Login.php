@@ -116,9 +116,9 @@ function comprobar_usuario($email, $passwd)
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span> Completa el formulario para crear tu cuenta </span>
-                <input type="text" placeholder="Name" name="nombre">
-                <input type="email" placeholder="Email" name="mail">
-                <input type="password" placeholder="Password" name="contraseña">
+                <input type="text" placeholder="Name" name="nombre" required>
+                <input type="email" placeholder="Email" name="mail" required>
+                <input type="password" placeholder="Password" name="contraseña" required>
                 <button name="registrar" type="submit">Sign Up</button>
             </form>
         </div>

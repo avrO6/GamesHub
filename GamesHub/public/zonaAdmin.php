@@ -1,7 +1,13 @@
-<?php
-    
+    <?php
+        
+        $cadena_conexion = "mysql:dbname=empresa;host=127.0.0.1";
+        $usuario = "root";
+        $clave = "";
+        
 
-?>
+        $db = new PDO($cadena_conexion, $usuario, $clave);
+        
+    ?>
 
 
 <!DOCTYPE html>
@@ -26,8 +32,9 @@
 
 <main>
 <h1>Mostrar tabla</h1>
-<form action="">
-    <select name="">
+
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+    <select >
         <option value="Producto">Producto</option>
         <option value="Claves">Claves</option>
         <option value="categoria">Categorias</option>
@@ -37,8 +44,38 @@
 </form>
 
 <?php 
-    
+
+
+    if(isset($_POST["mostrar"])){
+
+        $usuarios = $db->prepare("SELECT codigo, nombre, clave, rol FROM ?");
+        $usuarios->execute(array());
+        
+        
+    echo"<div class='tabla'>
+    <h1>Tabla de la Base de Datos</h1>
+    <table>
+        <tr>
+            <td>Codigo</td>
+            <td>Nombre</td>
+            <td>Clave</td>
+            <td>Rol</td>
+        </tr>
+        ";
+        //  Muestra los datos en una tabla HTML.
+        foreach ($usuarios as $filas) {
+            echo "<tr>";
+            echo "<td>" . $filas['codigo'] . "</td>";
+            echo "<td>" . $filas['nombre'] . "</td>";
+            echo "<td>" . $filas['clave'] . "</td>";
+            echo "<td>" . $filas['rol'] . "</td>";
+            echo "</tr>";
+        }
+    echo "</table></div>";
+
+    }
 ?>
+
 
 <h1>Añadir producto</h1>
     <form>
