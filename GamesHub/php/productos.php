@@ -153,7 +153,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
                 $consulta->execute(array($nombre));
 
                 foreach ($consulta as $filas) {
-                    echo "<form action=main.php method='POST'> <div class='card' style='width: 18rem;'>
+                    echo "<form method='POST'> <div class='card' style='width: 18rem;'>
                                 <img src='../img/" . $filas["Nombre"] . ".png' class='card-img-top' alt='...'>
                                 <div class='card-body'>
                                 <h5 class='card-title'>" . $filas["Nombre"] . "&nbsp&nbsp&nbsp" . $filas["Precio"] . "€" . "</h5>
