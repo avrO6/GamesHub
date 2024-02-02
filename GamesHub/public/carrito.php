@@ -14,7 +14,6 @@
 
     if(isset($_POST["eliminar"])){
         unset($_SESSION["Carrito"][$_POST['eliminar']]);
-         header("location:./carrito.php");  
     }
     $precio_total = 0
 
