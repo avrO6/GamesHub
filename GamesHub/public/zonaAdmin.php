@@ -1,6 +1,6 @@
     <?php
         
-        $cadena_conexion = "mysql:dbname=empresa;host=127.0.0.1";
+        $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
         $usuario = "root";
         $clave = "";
         
@@ -34,10 +34,10 @@
 <h1>Mostrar tabla</h1>
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
-    <select >
-        <option value="Producto">Producto</option>
-        <option value="Claves">Claves</option>
-        <option value="categoria">Categorias</option>
+    <select name="opcion">
+        <option name="opcion" value="productos">Producto</option>
+        <option name="opcion" value="Claves">Claves</option>
+        <option name="opcion" value="categoria">Categorias</option>
     </select>
 
     <button name="mostrar" type="submit">Mostrar tabla</button>
@@ -48,15 +48,20 @@
 
     if(isset($_POST["mostrar"])){
 
-        $usuarios = $db->prepare("SELECT codigo, nombre, clave, rol FROM ?");
+        $usuarios = $db->prepare("SELECT *  FROM ".$_POST["opcion"] );
         $usuarios->execute(array());
         
+      /*   $datos_tabla->$db->select COLUMN_NAME
+        from INFORMATION_SCHEMA.COLUMNS
+       where TABLE_SCHEMA = 'dbo'
+         and TABLE_NAME = 'Prueba'
+       order by ORDINAL_POSITION */
         
     echo"<div class='tabla'>
     <h1>Tabla de la Base de Datos</h1>
     <table>
         <tr>
-            <td>Codigo</td>
+            <td>".$_POST["opcion"]."</td>
             <td>Nombre</td>
             <td>Clave</td>
             <td>Rol</td>
@@ -65,11 +70,12 @@
         //  Muestra los datos en una tabla HTML.
         foreach ($usuarios as $filas) {
             echo "<tr>";
-            echo "<td>" . $filas['codigo'] . "</td>";
-            echo "<td>" . $filas['nombre'] . "</td>";
-            echo "<td>" . $filas['clave'] . "</td>";
-            echo "<td>" . $filas['rol'] . "</td>";
-            echo "</tr>";
+            echo "<td>" . $filas[0] . "</td>";  
+            echo "<td>" . $filas[1] . "</td>";
+            echo "<td>" . $filas[2] . "</td>";
+             if(isset($filas[3])){ echo "<td><div class='descrpipcion'>" . $filas[3] . "</div></td>";}; 
+             if(isset($filas[4])){ echo "<td><div class='descrpipcion'>" . $filas[4] . "</div></td>";}; 
+             echo "</tr>";
         }
     echo "</table></div>";
 
