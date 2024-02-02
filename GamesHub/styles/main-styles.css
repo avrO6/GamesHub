@@ -55,6 +55,10 @@ section{
     margin-left: 10px;
     overflow: scroll;
 }
+
+.card{
+    height: 505px;
+}
 .avatar-img{
     display: flex;
     flex-direction: row;

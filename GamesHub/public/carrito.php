@@ -133,7 +133,7 @@
                             <span>$$$</span>
                         </div>
     
-                        <button type='submit' class='btn btn-primary'>Checkout</button>";
+                        <a href='./checkout.php'><button type='submit' class='btn btn-primary'>Checkout</button></a>";
                     ?>
 
 <!--                     <h3>Resumen</h3>
