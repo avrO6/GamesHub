@@ -70,9 +70,19 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
 
                     <form class="d-flex" role="search" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                         <div class="carrito">
-                            <a href="carrito.php"><img src="../img/carrito-de-compras.png" alt=""></a>
+                            <a href="carrito.php">
+                                <img src="../img/carrito-de-compras.png" alt="">
+                                <?php
+                                // Mostrar la cantidad de productos en el carrito
+                                if (isset($_SESSION["Carrito"])) {
+                                    $cantidadProductos = count($_SESSION["Carrito"]);
+                                    echo "<span class='badge bg-primary'>$cantidadProductos</span>";
+                                }
+                                ?>
+                            </a>
                         </div>
 
+                        <!-- Resto del formulario de búsqueda -->
                         <input name="texto_bus" class="form-control me-2" type="text" placeholder="Buscar por nombre" aria-label="Search">
                         <button name="buscador" class="btn btn-outline-light" type="submit">Buscar</button>
                     </form>
@@ -98,12 +108,12 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
 
                 <?php
 
-                    if(isset($_SESSION["Rol"]) && $_SESSION["Rol"] == 0){
-                        echo "
+                if (isset($_SESSION["Rol"]) && $_SESSION["Rol"] == 0) {
+                    echo "
                         <span>
                             <b><a class='nav-link' href='zonaAdmin.php'>Administración</a></b>
                         </span>";
-                    }
+                }
 
                 ?>
 
@@ -119,7 +129,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
 
                     if (isset($_SESSION["Rol"])) {
                         echo ('<button class="btn btn-outline-light">' . $_SESSION["Puntos"] . ' GP</button>');
-                        echo ('<a class="nav-link" href="/php/logout.php">Log out</a>');
+                        echo ('<a class="nav-link" href="../php/logout.php">Log out</a>');
                     } else {
 
                         echo ('<a class="nav-link" href="login.php">Log in</a>');

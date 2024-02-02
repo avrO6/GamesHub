@@ -1,13 +1,14 @@
 <?php
+// Start or resume the session
+session_start();
 
-    session_start();
+// Unset all session variables
+session_unset();
 
-    $_SESSION = array();
+// Destroy the session
+session_destroy();
 
-    session_destroy();
-
-    setcookie(session_name(),1,time() -1000);
-
-    header("Location: ../public/main.php");
-
+// Redirect to the login page or any other desired page
+header("Location: ../public/main.php");
+exit();
 ?>
