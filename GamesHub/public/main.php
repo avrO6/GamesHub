@@ -70,16 +70,22 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
 
                     <form class="d-flex" role="search" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                         <div class="carrito">
-                            <a href="carrito.php">
-                                <img src="../img/carrito-de-compras.png" alt="">
+                            <div class="carrito-icono">
+                                <a href="../public/carrito.php">
+                                    <img src="../img/carrito-de-compras.png" alt="">
+                                </a>
+                            </div>
+                            <div class="numero-articulos">
                                 <?php
                                 // Mostrar la cantidad de productos en el carrito
                                 if (isset($_SESSION["Carrito"])) {
                                     $cantidadProductos = count($_SESSION["Carrito"]);
-                                    echo "<span class='badge bg-primary'>$cantidadProductos</span>";
+                                    if ($cantidadProductos > 0) {
+                                        echo "<span class='badge'>$cantidadProductos</span>";
+                                    }
                                 }
                                 ?>
-                            </a>
+                            </div>
                         </div>
 
                         <!-- Resto del formulario de búsqueda -->
@@ -134,11 +140,6 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
 
                         echo ('<a class="nav-link" href="login.php">Log in</a>');
                     }
-
-                    $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
-                    $usuario = "root";
-                    $contraseña = "";
-                    $db = new PDO($cadena_conexion, $usuario, $contraseña);
                     ?>
 
                 </div>
@@ -148,6 +149,12 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
 
         <section>
             <?php
+
+            $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
+            $usuario = "root";
+            $contraseña = "";
+            $db = new PDO($cadena_conexion, $usuario, $contraseña);
+
             if (isset($_POST["buscador"])) {
                 $nombre = "%" . $_POST["texto_bus"] . "%";
                 $consulta = $db->prepare("SELECT ID, Precio, Categoria, Descripcion, Nombre FROM productos WHERE Nombre LIKE ?");

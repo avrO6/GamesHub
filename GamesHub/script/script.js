@@ -34,3 +34,25 @@ let cambiarModo = () => {
     }
 }
 /* ----- * ----- */
+
+function generarClave() {
+    let clave = '';
+    
+    for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+            clave += String.fromCharCode(Math.floor(Math.random() * 26) + 65); // Generar letra mayúscula
+        }
+        
+        if (i < 4) {
+            clave += '-'; // Agregar el guion después de cada bloque de 5 caracteres
+        }
+    }
+    
+    return clave;
+}
+
+/*for (let index = 0; index < 50; index++) {
+   const claveGenerada = generarClave();
+document.write(claveGenerada + "</br>");
+    
+}*/
