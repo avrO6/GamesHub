@@ -51,11 +51,11 @@ function generarClave() {
     return clave;
 }
 
-/*for (let index = 0; index < 50; index++) {
+for (let index = 0; index < 1; index++) {
    const claveGenerada = generarClave();
 document.write(claveGenerada + "</br>");
     
-}*/
+
 
 /* Total dinamico */
 
