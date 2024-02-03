@@ -51,17 +51,9 @@ function generarClave() {
     return clave;
 }
 
-for (let index = 0; index < 1; index++) {
+/* for (let index = 0; index < 1; index++) {
    const claveGenerada = generarClave();
 document.write(claveGenerada + "</br>");
-    
+} */
 
 
-/* Total dinamico */
-
-let checkbox = document.getElementsByName('descuento')
-let span = document.getElementById('descuento')
-
-if(checkbox.checked){
-    span.innerHTML = `".$precio_total - substr($_SESSION['Puntos'], 0, -2)."`;
-}

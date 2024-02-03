@@ -125,13 +125,13 @@
 
                         <form action=''>
                             <div class='resum'>
-                                <input type='checkbox' name='descuento'> Aplicar descuento
+                                <input type='button' name='descuento' value='✅' onclick='total()'> Aplicar descuento
                             </div>
                         </form>
     
                         <div class='resum'>
                             <span>Total</span>
-                            <span id='descuento'>".$precio_total - substr($_SESSION['Puntos'], 0, -2)." €</span>
+                            <span id='descuento'> €</span>
                         </div>
     
                         <a href='./checkout.php'><button type='submit' class='btn btn-primary'>Checkout</button></a>";
@@ -176,7 +176,8 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+    <script src="../script/total-dinamico.js"></script>                
+                
 </body>
 
 </html>
