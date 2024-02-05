@@ -105,13 +105,13 @@
                 <form action="./checkout.php" method="post">
 
                     <?php
-
+                        
                         echo "                 
                             <h3>Resumen</h3>
 
                             <div class='resum'>
                                 <span>Total</span>
-                                <span>".$precio_total." €</span>
+                                <span name='total'>".$precio_total." €</span>
                             </div>
         
                             <div class='resum'>
@@ -133,7 +133,10 @@
                                 <span id='descuento'> ".$precio_total - intval(substr($_SESSION['Puntos'], 0, -2))." €</span>
                             </div>
         
-                            <button type='submit' class='btn btn-primary'>Checkout</button>";
+                            <button name='checkout' type='submit' class='btn btn-primary'>Checkout</button>";
+
+                            $_SESSION["total"] = $precio_total;
+                            $_SESSION["descuento"] = intval(substr($_SESSION['Puntos'], 0, -2));
                     ?>
 
 <!--                     <h3>Resumen</h3>
