@@ -34,7 +34,7 @@
 
         <div class="form">
 
-            <form action="" method="post">
+            <form action="../php/pago.php" method="post">
 
                 <div class="input-group">
                     <span class="input-group-text">First and last name</span>
