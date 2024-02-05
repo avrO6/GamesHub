@@ -106,36 +106,38 @@
 
                     <?php
 
-                        echo "                    
-                        <h3>Resumen</h3>
+                        echo "
+                        <form action=''>                   
+                            <h3>Resumen</h3>
 
-                        <div class='resum'>
-                            <span>Subtotal</span>
-                            <span>".$precio_total." €</span>
-                        </div>
-    
-                        <div class='resum'>
-                            <span>PG</span>
-                            <span>".$_SESSION['Puntos']."</span>
-                        </div>
-    
-                        <div class='resum'>
-                            <span>Descuento</span>
-                            <span>". substr($_SESSION['Puntos'], 0, -2) ." €</span>
-                        </div>
-
-                        <form action=''>
                             <div class='resum'>
-                                <input type='button' name='descuento' value='✅' onclick='total()'> Aplicar descuento
+                                <span>Subtotal</span>
+                                <span>".$precio_total." €</span>
                             </div>
-                        </form>
-    
-                        <div class='resum'>
-                            <span>Total</span>
-                            <span id='descuento'> €</span>
-                        </div>
-    
-                        <a href='./checkout.php'><button type='submit' class='btn btn-primary'>Checkout</button></a>";
+        
+                            <div class='resum'>
+                                <span>PG</span>
+                                <span>".$_SESSION['Puntos']."</span>
+                            </div>
+        
+                            <div class='resum'>
+                                <span>Descuento</span>
+                                <span name='descuento'>". substr($_SESSION['Puntos'], 0, -2) ." €</span>
+                            </div>
+
+                            
+                                <div class='resum'>
+                                    <input type='checkbox' name='check'> Aplicar descuento
+                                </div>
+                            
+        
+                            <div class='resum'>
+                                <span>Total</span>
+                                <span id='descuento'> €</span>
+                            </div>
+        
+                            <a href='./checkout.php'><button type='submit' class='btn btn-primary'>Checkout</button></a>
+                        </form>";
                     ?>
 
 <!--                     <h3>Resumen</h3>
