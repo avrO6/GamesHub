@@ -127,7 +127,7 @@
 
                             
                                 <div class='resum'>
-                                    <input type='checkbox' name='check'> Aplicar descuento
+                                    <input type='checkbox' name='check' value='si'> Aplicar descuento
                                 </div>
                             
         
