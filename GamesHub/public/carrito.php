@@ -14,11 +14,8 @@
 
     if(isset($_POST["eliminar"])){
         unset($_SESSION["Carrito"][$_POST['eliminar']]);
-<<<<<<< Updated upstream
-         header("location:./carrito.php");  
-=======
         header("location:carrito.php");
->>>>>>> Stashed changes
+
     }
     $precio_total = 0
 
