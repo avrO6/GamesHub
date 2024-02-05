@@ -107,11 +107,11 @@
                     <?php
 
                         echo "
-                        <form action=''>                   
+                        <form action= checkout.php method='POST'>                   
                             <h3>Resumen</h3>
 
                             <div class='resum'>
-                                <span>Subtotal</span>
+                                <span>Total</span>
                                 <span>".$precio_total." €</span>
                             </div>
         
@@ -125,18 +125,16 @@
                                 <span name='descuento'>". substr($_SESSION['Puntos'], 0, -2) ." €</span>
                             </div>
 
-                            
-                                <div class='resum'>
-                                    <input type='checkbox' name='check' value='si'> Aplicar descuento
-                                </div>
-                            
-        
                             <div class='resum'>
-                                <span>Total</span>
-                                <span id='descuento'> €</span>
+                                <input type='checkbox' name='check' value='si'> Aplicar descuento
                             </div>
         
-                            <a href='./checkout.php'><button type='submit' class='btn btn-primary'>Checkout</button></a>
+                            <div class='resum'>
+                                <span>Total + descuento</span>
+                                <span id='descuento'> ".$precio_total - intval(substr($_SESSION['Puntos'], 0, -2))." €</span>
+                            </div>
+        
+                            <button type='submit' class='btn btn-primary'>Checkout</button>
                         </form>";
                     ?>
 
