@@ -102,12 +102,11 @@
 
             <div class="checking">
 
-                <form action="" method="post">
+                <form action="./checkout.php" method="post">
 
                     <?php
 
-                        echo "
-                        <form action= checkout.php method='POST'>                   
+                        echo "                 
                             <h3>Resumen</h3>
 
                             <div class='resum'>
@@ -134,8 +133,7 @@
                                 <span id='descuento'> ".$precio_total - intval(substr($_SESSION['Puntos'], 0, -2))." €</span>
                             </div>
         
-                            <button type='submit' class='btn btn-primary'>Checkout</button>
-                        </form>";
+                            <button type='submit' class='btn btn-primary'>Checkout</button>";
                     ?>
 
 <!--                     <h3>Resumen</h3>
