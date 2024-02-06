@@ -10,6 +10,12 @@
         $arr1 = $_SESSION["Carrito"];
         $cuerpo_correo = [];
 
+        function calcular_puntos($dinero){
+            $puntos = round(($dinero *0.10)*100);
+            return $puntos;
+        }
+
+
         foreach ($arr1 as $clave => $valor) {
             
             $consulta = $db->prepare( "SELECT clave FROM claves WHERE id_producto = ? LIMIT $valor");
@@ -19,11 +25,21 @@
             $nombre->execute(array($clave));
             $nombre = $nombre->fetch();
             
-
-            $cuerpo_correo = array_merge($cuerpo_correo,["\n su clave para el juego: ".$nombre["Nombre"]." es: \n".$producto["clave"]."."]) ;
+            foreach($producto as $fila){
+                $cuerpo_correo = array_merge($cuerpo_correo,["\n su clave para el juego: ".$nombre["Nombre"]." es: \n".$fila["clave"]   ."."]) ;
+            }
+            
         }
 
-        $cuerpo_correo_str = implode("", $cuerpo_correo);
+        $cuerpo_correo_str = implode(" \n", $cuerpo_correo);
+
+
+
+        $puntos = calcular_puntos($_SESSION["total"]);
+
+        $dinero = $db->prepare("UPDATE usuarios SET puntos=? where Name=?");
+        $dinero->execute(array($puntos,$_SESSION["Name"]));
+
 
         Enviar_correo($_SESSION["Correo"],$_SESSION["Name"],$cuerpo_correo_str);
     ?>

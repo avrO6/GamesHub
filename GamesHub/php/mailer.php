@@ -25,7 +25,8 @@ function Enviar_correo($envio, $nombre, $cuerpo) {
 
     // Configura el asunto y el cuerpo del correo.
     $mail->Subject = "Compra de GamesHub";
-    $mail->msgHTML($cuerpo);
+    $mail->Body = $cuerpo;
+    $mail->isHTML(false);
 
     // Agrega el destinatario y su nombre.
     $address = $envio;
