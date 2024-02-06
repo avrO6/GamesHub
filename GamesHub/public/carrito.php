@@ -105,7 +105,7 @@
                 <form action="./checkout.php" method="post">
 
                     <?php
-                        
+                        $puntos = round($_SESSION['Puntos'] / 100);
                         echo "                 
                             <h3>Resumen</h3>
 
@@ -121,7 +121,7 @@
         
                             <div class='resum'>
                                 <span>Descuento</span>
-                                <span name='descuento'>". substr($_SESSION['Puntos'], 0, -2) ." €</span>
+                                <span name='descuento'>". $puntos ." €</span>
                             </div>
 
                             <div class='resum'>
@@ -130,7 +130,7 @@
         
                             <div class='resum'>
                                 <span>Total + descuento</span>
-                                <span id='descuento'> ".$precio_total - intval(substr($_SESSION['Puntos'], 0, -2))." €</span>
+                                <span id='descuento'> ".$precio_total - $puntos." €</span>
                             </div>
         
                             <button name='checkout' type='submit' class='btn btn-primary'>Checkout</button>";
