@@ -41,5 +41,5 @@
         $dinero->execute(array($puntos,$_SESSION["Name"]));
 
 
-        Enviar_correo($_SESSION["Correo"],$_SESSION["Name"],$cuerpo_correo_str);
+        Enviar_correo($_POST["email"],$_POST["nombre"],$cuerpo_correo_str);
     ?>
