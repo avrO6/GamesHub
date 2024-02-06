@@ -1,4 +1,4 @@
-    <?php
+<?php
     require "./mailer.php";
 
     $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
@@ -57,4 +57,4 @@
 
     Enviar_correo($_SESSION["Correo"], $_SESSION["Name"], $cuerpo_correo_str);
     actualizar_puntos();
-    ?>
+?>
