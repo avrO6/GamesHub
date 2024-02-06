@@ -116,7 +116,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
                 if (isset($_SESSION["Rol"]) && $_SESSION["Rol"] == 0) {
                     echo "
                         <span>
-                            <b><a class='nav-link' href='zonaAdmin.php'>Administración</a></b>
+                            <b><a class='nav-link' href='../public/zonaAdmin.php'>Administración</a></b>
                         </span>";
                 }
 
