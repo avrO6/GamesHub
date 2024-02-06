@@ -25,7 +25,8 @@
         $db = new PDO($cadena_conexion, $usuario, $contraseña);
         $consulta = $db->prepare("SELECT puntos FROM usuarios WHERE correo = ? ");
         $consulta->execute(array($_SESSION["Correo"]));
-        $consulta = $consulta->fetch();
+        $consulta = $consulta->fetch();        
+        
         $_SESSION["Puntos"] = $_SESSION['Puntos'] + $consulta["puntos"];
     }
 
@@ -54,10 +55,6 @@
     $dinero->execute(array($puntos, $_SESSION["Name"]));
 
 
-<<<<<<< Updated upstream
-        Enviar_correo($_POST["email"],$_POST["nombre"],$cuerpo_correo_str);
-=======
     Enviar_correo($_SESSION["Correo"], $_SESSION["Name"], $cuerpo_correo_str);
     actualizar_puntos();
->>>>>>> Stashed changes
     ?>
