@@ -110,6 +110,18 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
                 <span>
                     <b><a class="nav-link" href="#">Atencion al Cliente</a></b>
                 </span>
+
+                <?php
+
+                if (isset($_SESSION["Rol"]) && $_SESSION["Rol"] == 0) {
+                    echo "
+                        <span>
+                            <b><a class='nav-link' href='zonaAdmin.php'>Administración</a></b>
+                        </span>";
+                }
+
+                ?>
+
             </div>
 
             <div class="avatar-img">
