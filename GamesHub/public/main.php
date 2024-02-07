@@ -21,7 +21,6 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
     }
 }
 
-
 ?>
 
 <!DOCTYPE html>
