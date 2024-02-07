@@ -193,6 +193,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
     <?php
         if($_SESSION['alert']){
             echo "<script>alert('No hay mas stock de este producto');</script>";
+            $_SESSION['alert'] = false;
         }
     ?>
     <script src=""></script>
