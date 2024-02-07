@@ -33,7 +33,26 @@ function añadirAlCarrito($idProducto)
 {
     // Verificar si la ID del producto ya existe en el array
     if (array_key_exists($idProducto, $_SESSION["Carrito"])) {
-        $_SESSION["Carrito"][$idProducto]++;
+
+        $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
+        $usuario = "root";
+        $contraseña = "";
+        $db = new PDO($cadena_conexion, $usuario, $contraseña);
+
+        try{
+            $consulta = $db->prepare("SELECT clave FROM claves WHERE id_producto = ? ");
+            $consulta->execute(array($idProducto));
+            $consulta->fetchAll();
+            if($consulta->rowCount() <= $_SESSION["Carrito"][$idProducto]){
+                echo "<script>alert('No hay mas stock de este producto');</script>";
+            }else{
+                $_SESSION["Carrito"][$idProducto]++;
+            }
+        }catch(PDOException $e){
+
+            echo "<p>Error al añadir  Producto</p>";
+        }      
+
     } else {
         // Si no existe, agregamos un nuevo elemento con valor 1
         $_SESSION["Carrito"][$idProducto] = 1;
