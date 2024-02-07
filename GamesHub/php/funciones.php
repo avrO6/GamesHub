@@ -44,7 +44,7 @@ function añadirAlCarrito($idProducto)
             $consulta->execute(array($idProducto));
             $consulta->fetchAll();
             if($consulta->rowCount() <= $_SESSION["Carrito"][$idProducto]){
-                echo "<script>alert('No hay mas stock de este producto');</script>";
+                $_SESSION['alert'] = true;
             }else{
                 $_SESSION["Carrito"][$idProducto]++;
             }
