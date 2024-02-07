@@ -136,7 +136,7 @@
                             <button name='checkout' type='submit' class='btn btn-primary'>Checkout</button>";
 
                             $_SESSION["total"] = $precio_total;
-                            $_SESSION["descuento"] = intval(substr($_SESSION['Puntos'], 0, -2));
+                            $_SESSION["descuento"] = round($_SESSION['Puntos'] / 100);
                     ?>
 
 <!--                     <h3>Resumen</h3>
