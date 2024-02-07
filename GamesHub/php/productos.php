@@ -1,16 +1,6 @@
 <?php
 session_start();
-
-function añadirAlCarrito($idProducto)
-{
-    // Verificar si la ID del producto ya existe en el array
-    if (array_key_exists($idProducto, $_SESSION["Carrito"])) {
-        $_SESSION["Carrito"][$idProducto]++;
-    } else {
-        // Si no existe, agregamos un nuevo elemento con valor 1
-        $_SESSION["Carrito"][$idProducto] = 1;
-    }
-}
+require "./funciones.php";
 
 if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
     try {

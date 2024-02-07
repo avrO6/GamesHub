@@ -1,5 +1,6 @@
 <?php
     require "./mailer.php";
+    require "./funciones.php";
 
     $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
     $usuario = "root";
@@ -9,25 +10,6 @@
 
     $arr1 = $_SESSION["Carrito"];
     $cuerpo_correo = [];
-
-    function calcular_puntos($dinero)
-    {
-        $puntos = round(($dinero * 0.10) * 100);
-        return $puntos;
-    }
-
-    function actualizar_puntos(){
-        $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
-        $usuario = "root";
-        $contraseña = "";  
-        
-        $db = new PDO($cadena_conexion, $usuario, $contraseña);
-        $consulta = $db->prepare("SELECT puntos FROM usuarios WHERE correo = ? ");
-        $consulta->execute(array($_SESSION["Correo"]));
-        $consulta = $consulta->fetch();
-
-        $_SESSION["Puntos"] = $_SESSION['Puntos'] + $consulta["puntos"];
-    }
 
 
     foreach ($arr1 as $clave => $valor) {

@@ -1,16 +1,17 @@
 <?php  
     session_start();
+    require "../php/funciones.php";
+
     if(isset($_SESSION["total"])){
         if($_SESSION["total"]==0){
             header("location:carrito.php");
         }
     }
-    if(isset($_POST["checkout"])){+
+    if(isset($_POST["checkout"])){
         $total = $_SESSION["total"];
-
         $descuento = $_SESSION["descuento"];
-        if($_POST["check"]!=null && isset($_POST['check'])){
-            $_SESSION["Puntos"]=0;
+        if(isset($_POST["check"])!=null ){
+            $_SESSION["Puntos"]= $_SESSION["Puntos"]-redondear_precios(round($total*100));
             $total = $total-$descuento;
             $_SESSION["total"] = $total;
         }

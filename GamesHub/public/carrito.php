@@ -1,5 +1,6 @@
 <?php 
     session_start();
+    require "../php/funciones.php";
 
     if(!isset($_SESSION["Carrito"])){
         header("location: Login.php?carro=true");
@@ -17,6 +18,7 @@
         header("location:carrito.php");
 
     }
+    
     $precio_total = 0
 
 ?>
@@ -130,13 +132,13 @@
         
                             <div class='resum'>
                                 <span>Total + descuento</span>
-                                <span id='descuento'> ".$precio_total - $puntos." €</span>
+                                <span id='descuento'> ".redondear_precios($precio_total - $puntos)." €</span>
                             </div>
         
                             <button name='checkout' type='submit' class='btn btn-primary'>Checkout</button>";
 
                             $_SESSION["total"] = $precio_total;
-                            $_SESSION["descuento"] = round($_SESSION['Puntos'] / 100);
+                            $_SESSION["descuento"] = redondear_precios(round($_SESSION['Puntos'] / 100));
                     ?>
 
 <!--                     <h3>Resumen</h3>
