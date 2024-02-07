@@ -7,10 +7,10 @@
     }
     if(isset($_POST["checkout"])){+
         $total = $_SESSION["total"];
-        $_SESSION["Puntos"]=0;
-        $descuento = $_SESSION["descuento"];
-        if(isset($_POST["check"])){
 
+        $descuento = $_SESSION["descuento"];
+        if($_POST["check"]!=null && isset($_POST['check'])){
+            $_SESSION["Puntos"]=0;
             $total = $total-$descuento;
             $_SESSION["total"] = $total;
         }
