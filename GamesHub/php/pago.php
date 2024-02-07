@@ -42,10 +42,4 @@
 
 
     Enviar_correo($_SESSION["Correo"], $_SESSION["Name"], $cuerpo_correo_str);
-<<<<<<< Updated upstream
-    actualizar_puntos();
 ?>
-=======
-
-    ?>
->>>>>>> Stashed changes
