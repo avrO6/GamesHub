@@ -1,6 +1,7 @@
 <?php 
     session_start();
     require "../php/funciones.php";
+    actualizar_puntos();
 
     if(!isset($_SESSION["Carrito"])){
         header("location: Login.php?carro=true");

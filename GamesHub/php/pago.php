@@ -29,7 +29,7 @@
 
 
 
-    $puntos = calcular_puntos($_SESSION["total"]);
+    $puntos = $_SESSION["Puntos"] +calcular_puntos($_SESSION["total"]);
 
     $dinero = $db->prepare("UPDATE usuarios SET puntos=? where Name=?");
     $dinero->execute(array($puntos, $_SESSION["Name"]));

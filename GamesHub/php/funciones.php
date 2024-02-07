@@ -11,7 +11,7 @@ function redondear_precios($dinero)
 
 function calcular_puntos($dinero)
 {
-    $puntos = round(($dinero * 0.10) * 100);
+    $puntos = round($dinero * 0.10) * 100;
     return $puntos;
 }
 
@@ -26,7 +26,7 @@ function actualizar_puntos()
     $consulta->execute(array($_SESSION["Correo"]));
     $consulta = $consulta->fetch();
 
-    $_SESSION["Puntos"] = $_SESSION['Puntos'] + $consulta["puntos"];
+    $_SESSION["Puntos"] =  $consulta["puntos"];
 }
 
 function añadirAlCarrito($idProducto)

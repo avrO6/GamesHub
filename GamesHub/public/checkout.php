@@ -11,7 +11,7 @@
         $total = $_SESSION["total"];
         $descuento = $_SESSION["descuento"];
         if(isset($_POST["check"])!=null ){
-            $_SESSION["Puntos"]= $_SESSION["Puntos"]-redondear_precios(round($total*100));
+            $_SESSION["Puntos"]= redondear_precios($_SESSION["Puntos"]-round($total*100));
             $total = $total-$descuento;
             $_SESSION["total"] = $total;
         }
