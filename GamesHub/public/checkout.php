@@ -17,7 +17,7 @@
         }
 
     }
-    $total = $_SESSION["total"];
+    $total = redondear_precios($_SESSION["total"]);
 ?>
 
 <!DOCTYPE html>

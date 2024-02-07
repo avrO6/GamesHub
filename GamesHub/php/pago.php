@@ -25,7 +25,6 @@
             $cuerpo_correo = array_merge($cuerpo_correo, ["\n su clave para el juego: " . $nombre["Nombre"] . " es: \n" . $fila["clave"]   . "."]);
         }
     }
-
     $cuerpo_correo_str = implode(" \n", $cuerpo_correo);
 
 
