@@ -20,6 +20,19 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
         echo "Error: " . $e->getMessage();
     }
 }
+
+function actualizar_puntos(){
+    $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
+    $usuario = "root";
+    $contraseña = "";
+
+    $db = new PDO($cadena_conexion, $usuario, $contraseña);
+    $consulta = $db->prepare("SELECT puntos FROM usuarios WHERE correo = ? ");
+    $consulta->execute(array($_SESSION["Correo"]));
+    $consulta = $consulta->fetch();        
+    
+    $_SESSION["Puntos"] = $_SESSION['Puntos'] + $consulta["puntos"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -135,6 +148,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
                     <?php
 
                     if (isset($_SESSION["Rol"])) {
+                        actualizar_puntos();
                         echo ('<button class="btn btn-outline-light">' . $_SESSION["Puntos"] . ' GP</button>');
                         echo ('<a class="nav-link" href="../php/logout.php">Log out</a>');
                     } else {

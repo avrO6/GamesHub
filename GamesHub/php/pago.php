@@ -16,20 +16,6 @@
         return $puntos;
     }
 
-    function actualizar_puntos()
-    {
-        $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
-        $usuario = "root";
-        $contraseña = "";
-
-        $db = new PDO($cadena_conexion, $usuario, $contraseña);
-        $consulta = $db->prepare("SELECT puntos FROM usuarios WHERE correo = ? ");
-        $consulta->execute(array($_SESSION["Correo"]));
-        $consulta = $consulta->fetch();        
-        
-        $_SESSION["Puntos"] = $_SESSION['Puntos'] + $consulta["puntos"];
-    }
-
 
     foreach ($arr1 as $clave => $valor) {
 
@@ -56,5 +42,10 @@
 
 
     Enviar_correo($_SESSION["Correo"], $_SESSION["Name"], $cuerpo_correo_str);
+<<<<<<< Updated upstream
     actualizar_puntos();
 ?>
+=======
+
+    ?>
+>>>>>>> Stashed changes
