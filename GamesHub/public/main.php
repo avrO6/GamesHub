@@ -2,6 +2,8 @@
 session_start();
 require "../php/funciones.php";
 
+$_SESSION['alert'] = false;
+
 if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
     try {
         añadirAlCarrito($_POST["añadir_carrito"]);
