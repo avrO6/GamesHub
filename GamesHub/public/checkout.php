@@ -1,3 +1,25 @@
+<?php  
+    session_start();
+    require "../php/funciones.php";
+
+    if(isset($_SESSION["total"])){
+        if($_SESSION["total"]==0){
+            header("location:carrito.php");
+        }
+    }
+    if(isset($_POST["checkout"])){
+        $total = $_SESSION["total"];
+        $descuento = $_SESSION["descuento"];
+        if(isset($_POST["check"])!=null ){
+            $_SESSION["Puntos"]= redondear_precios($_SESSION["Puntos"]-round($total*100));
+            $total = $total-$descuento;
+            $_SESSION["total"] = $total;
+        }
+
+    }
+    $total = redondear_precios($_SESSION["total"]);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,25 +37,25 @@
 
         <div class="form">
 
-            <form action="" method="post">
+            <form action="../php/pago.php" method="post">
 
                 <div class="input-group">
                     <span class="input-group-text">First and last name</span>
-                    <input type="text" aria-label="First name" class="form-control" name="nombre">
-                    <input type="text" aria-label="Last name" class="form-control" name="apellido">
+                    <input type="text" aria-label="First name" class="form-control" pattern="[A-Za-z]+" name="nombre" required>
+                    <input type="text" aria-label="Last name" class="form-control" pattern="[A-Za-z]+" name="apellido" required>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Nº Targeta</span>
                     <input type="text" class="form-control" name="n-targeta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="1234-5678-9012-3456">
                     <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
-                    <input type="text" class="form-control" name="cvv" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    <input type="text" class="form-control" name="cvv" aria-label="Sizing example input" pattern="[0-9]{3}" aria-describedby="inputGroup-sizing-default" required>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">@</span>
-                    <input type="text" class="form-control" placeholder="E-mail" name="email" aria-label="Username" aria-describedby="basic-addon1">
+                    <input type="text" class="form-control" placeholder="E-mail" name="email" aria-label="Username" aria-describedby="basic-addon1 " value="<?php echo $_SESSION['Correo'] ;  ?>">
                 </div>
                 <div class="input-group mb-3 dinero">
-                    <input type="text" class="form-control" name="email" aria-label="Username" aria-describedby="basic-addon1" value="77">
+                    <input type="text" class="form-control" name="email" aria-label="Username" aria-describedby="basic-addon1" value="<?php echo"$total"?>" readonly>
                     <span class="input-group-text" id="basic-addon1">€</span>
                 </div>
 

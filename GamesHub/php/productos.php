@@ -1,16 +1,6 @@
 <?php
 session_start();
-
-function añadirAlCarrito($idProducto)
-{
-    // Verificar si la ID del producto ya existe en el array
-    if (array_key_exists($idProducto, $_SESSION["Carrito"])) {
-        $_SESSION["Carrito"][$idProducto]++;
-    } else {
-        // Si no existe, agregamos un nuevo elemento con valor 1
-        $_SESSION["Carrito"][$idProducto] = 1;
-    }
-}
+require "./funciones.php";
 
 if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
     try {
@@ -110,6 +100,18 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
                 <span>
                     <b><a class="nav-link" href="#">Atencion al Cliente</a></b>
                 </span>
+
+                <?php
+
+                if (isset($_SESSION["Rol"]) && $_SESSION["Rol"] == 0) {
+                    echo "
+                        <span>
+                            <b><a class='nav-link' href='../public/zonaAdmin.php'>Administración</a></b>
+                        </span>";
+                }
+
+                ?>
+
             </div>
 
             <div class="avatar-img">
@@ -153,7 +155,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
                 $consulta->execute(array($nombre));
 
                 foreach ($consulta as $filas) {
-                    echo "<form method='POST'> <div class='card' style='width: 18rem;'>
+                    echo "<form action='' method='POST'> <div class='card' style='width: 18rem;'>
                                 <img src='../img/" . $filas["Nombre"] . ".png' class='card-img-top' alt='...'>
                                 <div class='card-body'>
                                 <h5 class='card-title'>" . $filas["Nombre"] . "&nbsp&nbsp&nbsp" . $filas["Precio"] . "€" . "</h5>
@@ -198,6 +200,12 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
         </section>
 
     </main>
+    <?php
+        if($_SESSION['alert']){
+            echo "<script>alert('No hay mas stock de este producto');</script>";
+            $_SESSION['alert'] = false;
+        }
+    ?>
 
     <script src=""></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
