@@ -1,0 +1,30 @@
+:root{
+    --Negro: #000000;
+    --Naranja: #FFA500;
+    --Gris-oscuro: #333333;
+    --Blanco: #FFFFFF;
+    --Gris-claro: #CCCCCC;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.form{
+    width: 40%;
+    margin: 20px auto;
+    padding: 30px;
+    background-color: #cccccc15;
+    box-shadow: 0 0 20px rgba(86, 86, 86, 0.8); 
+    border-radius: 8px;
+}
+
+form div, form button{
+    margin: 20px;
+}
+
+form button{
+    width: 200px;
+}
