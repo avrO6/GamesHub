@@ -133,13 +133,13 @@
         
                             <div class='resum'>
                                 <span>Total + descuento</span>
-                                <span id='descuento'> ".redondear_precios($precio_total - $puntos)." €</span>
+                                <span id='descuento'> ".controlar_negativos($precio_total - $puntos)." €</span>
                             </div>
         
                             <button name='checkout' type='submit' class='btn btn-primary'>Checkout</button>";
 
                             $_SESSION["total"] = $precio_total;
-                            $_SESSION["descuento"] = redondear_precios(round($_SESSION['Puntos'] / 100));
+                            $_SESSION["descuento"] = controlar_negativos(round($_SESSION['Puntos'] / 100));
                     ?>
 
 <!--                     <h3>Resumen</h3>

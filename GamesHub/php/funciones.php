@@ -1,5 +1,5 @@
 <?php
-function redondear_precios($dinero)
+function controlar_negativos($dinero)
 {
     if ($dinero < 0) {
         $dinero = 0;
