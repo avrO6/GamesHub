@@ -2,7 +2,6 @@
 session_start();
 require "../php/funciones.php";
 
-$_SESSION['alert'] = false;
 
 if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
     try {
@@ -192,12 +191,6 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
         </section>
 
     </main>
-    <?php
-        if($_SESSION['alert']){
-            echo "<script>alert('No hay mas stock de este producto');</script>";
-            $_SESSION['alert'] = false;
-        }
-    ?>
     <script src=""></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>

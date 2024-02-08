@@ -119,3 +119,37 @@ section{
     padding: 5px 5px;
     margin: -5px 0 0 -5px;
 }
+
+.fade-in-out {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #f44336; /* Color de fondo rojo */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000; /* Asegura que el contenedor esté arriba de otros elementos */
+    opacity: 0;
+    animation: fade-in-out 3s ease-in-out; /* Duración de la animación: 1 segundo */
+}
+
+/* Mostrar el contenedor con animación de opacidad */
+.fade-in-out.show {
+    display: none;
+    opacity: 0;
+}
+
+/* Definir la animación */
+@keyframes fade-in-out {
+    from {
+        display: block;
+        opacity: 1;
+    }
+    to {
+        display: block;
+        opacity: 0;
+    }
+
+}
