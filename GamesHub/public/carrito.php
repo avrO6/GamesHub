@@ -1,5 +1,7 @@
 <?php 
     session_start();
+    require "../php/funciones.php";
+    actualizar_puntos();
 
     if(!isset($_SESSION["Carrito"])){
         header("location: Login.php?carro=true");
@@ -14,7 +16,10 @@
 
     if(isset($_POST["eliminar"])){
         unset($_SESSION["Carrito"][$_POST['eliminar']]);
+        header("location:carrito.php");
+
     }
+    
     $precio_total = 0
 
 ?>
@@ -100,39 +105,41 @@
 
             <div class="checking">
 
-                <form action="" method="post">
+                <form action="./checkout.php" method="post">
 
                     <?php
-                        echo "                    
-                        <h3>Resumen</h3>
+                        $puntos = round($_SESSION['Puntos'] / 100);
+                        echo "                 
+                            <h3>Resumen</h3>
 
-                        <div class='resum'>
-                            <span>Subtotal</span>
-                            <span>".$precio_total."</span>
-                        </div>
-    
-                        <div class='resum'>
-                            <span>PG</span>
-                            <span>".$_SESSION['Puntos']."</span>
-                        </div>
-
-                        <form action=''>
                             <div class='resum'>
-                                <input type='checkbox' name='descuento'> Aplicar descuento
+                                <span>Total</span>
+                                <span name='total'>".$precio_total." €</span>
                             </div>
-                        </form>
-    
-                        <div class='resum'>
-                            <span>Descuento</span>
-                            <span>$$$</span>
-                        </div>
-    
-                        <div class='resum'>
-                            <span>Total</span>
-                            <span>$$$</span>
-                        </div>
-    
-                        <a href='./checkout.php'><button type='submit' class='btn btn-primary'>Checkout</button></a>";
+        
+                            <div class='resum'>
+                                <span>PG</span>
+                                <span>".$_SESSION['Puntos']."</span>
+                            </div>
+        
+                            <div class='resum'>
+                                <span>Descuento</span>
+                                <span name='descuento'>". $puntos ." €</span>
+                            </div>
+
+                            <div class='resum'>
+                                <input type='checkbox' name='check' value='si'> Aplicar descuento
+                            </div>
+        
+                            <div class='resum'>
+                                <span>Total + descuento</span>
+                                <span id='descuento'> ".redondear_precios($precio_total - $puntos)." €</span>
+                            </div>
+        
+                            <button name='checkout' type='submit' class='btn btn-primary'>Checkout</button>";
+
+                            $_SESSION["total"] = $precio_total;
+                            $_SESSION["descuento"] = redondear_precios(round($_SESSION['Puntos'] / 100));
                     ?>
 
 <!--                     <h3>Resumen</h3>
@@ -174,9 +181,8 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+    <script src="../script/total-dinamico.js"></script>                
+                
 </body>
 
 </html>
-
-
