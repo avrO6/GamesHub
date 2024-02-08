@@ -38,7 +38,7 @@ function añadirAlCarrito($idProducto)
         $usuario = "root";
         $contraseña = "";
         $db = new PDO($cadena_conexion, $usuario, $contraseña);
-
+        //Preguntamos a la base de datos la cantidad de productos que tenemos para comprobar si se puede añadir
         try{
             $consulta = $db->prepare("SELECT clave FROM claves WHERE id_producto = ? ");
             $consulta->execute(array($idProducto));
@@ -56,5 +56,34 @@ function añadirAlCarrito($idProducto)
     } else {
         // Si no existe, agregamos un nuevo elemento con valor 1
         $_SESSION["Carrito"][$idProducto] = 1;
+    }
+
+    /* Funcion de Hector solo mirar */
+    function insertarpedido($carrito, $codRes){
+        $res =  "algo"/* leerconfig(dirname(FILE)."/configuracion.xml", dirname(__FILE)."/configuracion.xsd") */;
+        $bd = new PDO($res[0], $res[1], $res[2]);
+        $bd->beginTransaction();
+        $hora = date("Y-m-d H:i:s", time());
+        // insertar el pedido
+        $sql = "insert into pedidos(fecha, enviado, restaurante) 
+                values('$hora',0, $codRes)";
+        $resul = $bd->query($sql);
+        if (!$resul) {
+            return FALSE;
+        }
+        // coger el id del nuevo pedido para las filas detalle
+        $pedido = $bd->lastInsertId();
+        // insertar las filas en pedidoproductos
+        foreach($carrito as $codProd=>$unidades){
+            $sql = "insert into pedidosproductos(Pedido, Producto, Unidades) 
+                         values( $pedido, $codProd, $unidades)";
+             $resul = $bd->query($sql); 
+            if (!$resul) {
+                $bd->rollback();
+                return FALSE;
+            }
+        }
+        $bd->commit();
+        return $pedido;
     }
 }
