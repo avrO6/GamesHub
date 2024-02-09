@@ -135,11 +135,8 @@ section{
     animation: fade-in-out 3s ease-in-out; /* Duración de la animación: 1 segundo */
 }
 
-/* Mostrar el contenedor con animación de opacidad */
-.fade-in-out.show {
-    display: none;
-    opacity: 0;
-}
+
+
 
 /* Definir la animación */
 @keyframes fade-in-out {

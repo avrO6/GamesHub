@@ -35,6 +35,7 @@ function Enviar_correo($envio, $nombre, $cuerpo) {
     // Intenta enviar el correo y muestra un mensaje de éxito o error.
     $result = $mail->send();
     if (!$result) {
+        header("location:../public/checkout.php?error=true");
         echo "<br><br><br>Error: " . $mail->ErrorInfo . "<br><br><br>";
     } else {
         $_SESSION["Carrito"] =[];

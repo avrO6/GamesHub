@@ -55,6 +55,7 @@
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
         $db->rollBack();
+        header("location:checkout.php?error=true");
     }
 
 ?>
