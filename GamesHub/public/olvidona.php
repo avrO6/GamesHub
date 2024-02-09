@@ -1,4 +1,70 @@
+<?php
 
+function comprobar_usuario($email)
+{
+    $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
+    $usuario = "root";
+    $contraseña = "";
+
+    try {
+        $db = new PDO($cadena_conexion, $usuario, $contraseña);
+
+        //Guardamos la consulta en una variable la cual pregunta por el usuario y la clave obtenidas en el formulario
+        $consulta = "SELECT Rol FROM usuarios WHERE Correo = '$email'";
+        //Ejecutamos la consulta
+        $resul = $db->query($consulta);
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
+    }
+
+    //Si devuelve lineas significa que el usuario existe
+    if ($resul->rowCount() == 0) {
+        return false;
+    } else {
+
+        return true;
+    }
+}
+
+if (isset($_POST["cambiar_contraseña"])) {
+    //Compruebo si el usuario existe y si es asi le redirijo a la pagina principal
+    if (comprobar_usuario($_POST['email'])) {
+        modificar_usuario($_POST['email'], $_POST['passwd']);
+    } else {
+        echo "Las credenciales no coinciden";
+        $err = TRUE;
+    }
+}
+function modificar_usuario($correo, $passwd)
+{
+
+    $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
+    $usuario = "root";
+    $contraseña = "";
+
+    try {
+
+        $db = new PDO($cadena_conexion, $usuario, $contraseña);
+
+        $db->beginTransaction();
+
+        $usuarios = $db->prepare("UPDATE usuarios
+        SET passwd = :contraseña
+        WHERE Correo = :email");
+
+        $usuarios->execute(array( ":email" => $correo, ":contraseña" => $passwd));
+        $db->commit();
+
+        echo "Se ha modificado la contraseña";
+        return true;
+    } catch (PDOException $e) {
+
+        $db->rollBack();
+        echo "<p>Error al modificar el usuario</p>";
+        return false;
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,23 +82,18 @@
 
         <div class="form">
 
-            <form action="../php/pago.php" method="post">
+            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
 
-                <div class="input-group">
-                    <span class="input-group-text">First and last name</span>
-                    <input type="text" aria-label="First name" class="form-control" pattern="[A-Za-z]+" name="nombre" required>
-                    <input type="text" aria-label="Last name" class="form-control" pattern="[A-Za-z]+" name="apellido" required>
-                </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">@</span>
-                    <input type="text" class="form-control" placeholder="E-mail" name="email" aria-label="Username" aria-describedby="basic-addon1 " value="">
+                    <input type="text" class="form-control" placeholder="E-mail" name="email" aria-label="Username" aria-describedby="basic-addon1 " value="" require>
                 </div>
                 <div class="input-group mb-3 dinero">
-                <span class="input-group-text" id="basic-addon1">Nueva contraseña</span>
-                    <input type="text" class="form-control" name="email" aria-label="Username" aria-describedby="basic-addon1" value="" readonly>
+                    <span class="input-group-text" id="basic-addon1">Nueva contraseña</span>
+                    <input type="password" class="form-control" name="passwd" aria-label="Username" aria-describedby="basic-addon1" value="" require>
                 </div>
 
-                <button class='btn btn-primary' type="submit">Cambiar contraseña</button>
+                <button class='btn btn-primary' type="submit" name="cambiar_contraseña">Cambiar contraseña</button>
 
             </form>
 
