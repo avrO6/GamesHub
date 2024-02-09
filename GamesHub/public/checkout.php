@@ -3,7 +3,7 @@
     require "../php/funciones.php";
 
 
-    if($_GET["error"]){
+    if(isset($_GET["error"])){
         echo "<div class='fade-in-out show'><p>Error al intentar hacer la transacción</p></div>";
     };
     if(isset($_SESSION["total"])){

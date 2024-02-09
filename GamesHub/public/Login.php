@@ -95,6 +95,8 @@ function comprobar_usuario($email, $passwd)
         }      
     
     }
+    
+
 ?>
 
 <!DOCTYPE html>

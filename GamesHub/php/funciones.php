@@ -47,6 +47,7 @@ function añadirAlCarrito($idProducto)
                 echo "<div class='fade-in-out show'><p>No hay stock del producto elegido</p></div>";
                
             }else{
+                $_SESSION["verde"]=false;
                 $_SESSION["Carrito"][$idProducto]++;
             }
         }catch(PDOException $e){

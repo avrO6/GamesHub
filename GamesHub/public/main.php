@@ -10,6 +10,10 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
         echo "Error: " . $e->getMessage();
     }
 }
+if(isset($_SESSION["verde"])&& $_SESSION["verde"]=true){
+    echo "<div class='fade-in-out-verde show'><p>Se ha realizado la compra correctamente</p></div>";
+}
+$_SESSION["verde"]=false;
 
 ?>
 

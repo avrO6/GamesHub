@@ -52,7 +52,7 @@ function modificar_usuario($correo, $contraseña)
         return true;
     } catch (PDOException $e) {
         echo $correo . $contraseña;
-        echo "<div class='fade-in-out-rojo show'><p>Error al modiicar el usuario</p></div>";
+        echo "<div class='fade-in-out-rojo show'><p>Error al modicar el usuario</p></div>";
         return false;
     }
 }

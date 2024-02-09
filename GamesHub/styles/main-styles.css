@@ -135,7 +135,20 @@ section{
     animation: fade-in-out 3s ease-in-out; /* Duración de la animación: 1 segundo */
 }
 
-
+.fade-in-out-verde {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #3aad3c; /* Color de fondo rojo */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000; /* Asegura que el contenedor esté arriba de otros elementos */
+    opacity: 0;
+    animation: fade-in-out 3s ease-in-out; /* Duración de la animación: 1 segundo */
+}
 
 
 /* Definir la animación */
