@@ -31,39 +31,32 @@ if (isset($_POST["cambiar_contraseña"])) {
     if (comprobar_usuario($_POST['email'])) {
         modificar_usuario($_POST['email'], $_POST['passwd']);
     } else {
-        echo "Las credenciales no coinciden";
+        echo "<div class='fade-in-out-rojo show'><p>Las credenciales no coinciden</p></div>";
         $err = TRUE;
     }
 }
-function modificar_usuario($correo, $passwd)
+function modificar_usuario($correo, $contraseña)
 {
-
     $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
     $usuario = "root";
-    $contraseña = "";
+    $contraseña_db = ""; // Renombra esta variable para evitar conflictos con el parámetro de la función
 
     try {
+        $db = new PDO($cadena_conexion, $usuario, $contraseña_db);
 
-        $db = new PDO($cadena_conexion, $usuario, $contraseña);
+        $update = "UPDATE usuarios SET passwd = '$contraseña' WHERE Correo = '$correo'";
+        $statement = $db->prepare($update);
+        $statement->execute();
 
-        $db->beginTransaction();
-
-        $usuarios = $db->prepare("UPDATE usuarios
-        SET passwd = :contraseña
-        WHERE Correo = :email");
-
-        $usuarios->execute(array( ":email" => $correo, ":contraseña" => $passwd));
-        $db->commit();
-
-        echo "Se ha modificado la contraseña";
+        header("location: Login.php?redirigido");
         return true;
     } catch (PDOException $e) {
-
-        $db->rollBack();
-        echo "<p>Error al modificar el usuario</p>";
+        echo $correo . $contraseña;
+        echo "<div class='fade-in-out-rojo show'><p>Error al modiicar el usuario</p></div>";
         return false;
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,15 +75,15 @@ function modificar_usuario($correo, $passwd)
 
         <div class="form">
 
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+            <form action="" method="post">
 
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">@</span>
-                    <input type="text" class="form-control" placeholder="E-mail" name="email" aria-label="Username" aria-describedby="basic-addon1 " value="" require>
+                    <input type="email" class="form-control" name="email" require>
                 </div>
                 <div class="input-group mb-3 dinero">
                     <span class="input-group-text" id="basic-addon1">Nueva contraseña</span>
-                    <input type="password" class="form-control" name="passwd" aria-label="Username" aria-describedby="basic-addon1" value="" require>
+                    <input type="password" class="form-control" name="passwd" require>
                 </div>
 
                 <button class='btn btn-primary' type="submit" name="cambiar_contraseña">Cambiar contraseña</button>

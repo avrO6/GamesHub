@@ -1,10 +1,13 @@
 
 <?php
 
+if (isset($_GET["redirigido"])) {
+    echo "<div class='fade-in-out-verde show'><p>Se ha cambiado la contraseña</p></div>";
+
+}
+
 if(isset($_GET["carro"])){
-    echo "
-        <p>Inicia Sesion para acceder al carro</p>
-    ";
+    echo "<div class='fade-in-out-rojo show'><p>Necesitas iniciar sesion para acceder al carrito</p></div>";
 }
 
 function comprobar_usuario($email, $passwd)
@@ -48,7 +51,7 @@ function comprobar_usuario($email, $passwd)
         if (comprobar_usuario($_POST['correo'], $_POST['passwd'])) {
             header("Location: main.php"); 
         } else {
-            echo "Las credenciales no coinciden";
+            echo "<div class='fade-in-out-rojo'><p>Las credenciales no coinciden</p></div>";
             $err = TRUE;     
         }
     }
@@ -59,7 +62,7 @@ function comprobar_usuario($email, $passwd)
                 comprobar_usuario($_POST['mail'], $_POST['contraseña']);
                 header("Location: main.php"); 
             } else {
-                echo "Algo ha salido mal, intentelo mas tarde.";
+                echo "<div class='fade-in-out-rojo'><p>Algo a salido mal intentelo mas tarde</p></div>";
                 $err = TRUE;     
             }
         }
@@ -87,7 +90,7 @@ function comprobar_usuario($email, $passwd)
         }catch(PDOException $e){
 
             $db->rollBack();
-            echo "<p>Error al crear usuario</p>";
+            echo "<div class='fade-in-out-rojo'><p>Eroor al crear usuario</p></div>";
             return false;
         }      
     
