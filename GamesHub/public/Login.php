@@ -131,7 +131,7 @@ function comprobar_usuario($email, $passwd)
                 <span> Completa el formulario para iniciar sesión </span>
                 <input type="email" placeholder="Email" name="correo" required>
                 <input type="password" placeholder="Password" name="passwd" required>
-                <a href="#">¿Has olvidado tu contraseña?</a>
+                <a href="olvidona.php">¿Has olvidado tu contraseña?</a>
                 <button name="logear" type="POST">Sign In</button>
             </form>
         </div>
