@@ -3,7 +3,7 @@
         session_start();
 
          if((!isset($_SESSION["Rol"]) || ($_SESSION["Rol"]!=0))){
-
+            header("Location:main.php");
          }
         $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
         $usuario = "root";
