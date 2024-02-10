@@ -3,7 +3,7 @@
     $_SESSION["verde"]=false;
     
 if (isset($_GET["redirigido"])) {
-    echo "<div class='fade-in-out-verde show'><p>Se ha cambiado la contraseña</p></div>";
+    echo "<div class='fade-in-out-verde show'><p>Se le ha enviado un correo con su contraseña</p></div>";
 
 }
 

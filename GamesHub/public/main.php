@@ -64,16 +64,16 @@ if (isset($_POST["añadir_carrito"])){
                             <a class="nav-link active nav-size" aria-current="page" href="">Explorar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-size" href="../php/productos.php?redirigido=1">Sistemas Operativos</a>
+                            <a class="nav-link nav-size" href="./productos.php?redirigido=1">Sistemas Operativos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-size" href="../php/productos.php?redirigido=2">Juegos</a>
+                            <a class="nav-link nav-size" href="./productos.php?redirigido=2">Juegos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-size" href="../php/productos.php?redirigido=3">Licencias</a>
+                            <a class="nav-link nav-size" href="./productos.php?redirigido=3">Licencias</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link nav-size" href="../php/productos.php?redirigido=4">Targetas regalo</a>
+                            <a class="nav-link nav-size" href="./productos.php?redirigido=4">Targetas regalo</a>
                         </li>
                     </ul>
 
@@ -115,7 +115,7 @@ if (isset($_POST["añadir_carrito"])){
 
             <div class="aside-content">
                 <span>
-                    <b><a class="nav-link" href="#">Comunidad</a></b>
+                    <b><a class="nav-link" href="https://discord.gg/MMYmZZwx7k">Comunidad</a></b>
                 </span>
                 <span>
                     <b><a class="nav-link" href="#">Atencion al Cliente</a></b>

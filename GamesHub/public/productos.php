@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "./funciones.php";
+require "../php/funciones.php";
 
 if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
     try {
@@ -42,7 +42,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active nav-size" aria-current="page" href="../public/main.php">Explorar</a>
+                            <a class="nav-link active nav-size" aria-current="page" href="main.php">Explorar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link nav-size" href="productos.php?redirigido=1">Sistemas Operativos</a>
@@ -61,7 +61,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
                     <form class="d-flex" role="search" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                         <div class="carrito">
                             <div class="carrito-icono">
-                                <a href="../public/carrito.php">
+                                <a href="./carrito.php">
                                     <img src="../img/carrito-de-compras.png" alt="">
                                 </a>
                             </div>
@@ -95,7 +95,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
 
             <div class="aside-content">
                 <span>
-                    <b><a class="nav-link" href="#">Comunidad</a></b>
+                    <b><a class="nav-link" href="https://discord.gg/MMYmZZwx7k">Comunidad</a></b>
                 </span>
                 <span>
                     <b><a class="nav-link" href="#">Atencion al Cliente</a></b>
@@ -106,7 +106,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
                 if (isset($_SESSION["Rol"]) && $_SESSION["Rol"] == 0) {
                     echo "
                         <span>
-                            <b><a class='nav-link' href='../public/zonaAdmin.php'>Administración</a></b>
+                            <b><a class='nav-link' href='./zonaAdmin.php'>Administración</a></b>
                         </span>";
                 }
 
@@ -184,7 +184,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
                             </form>  ";
                     }
                 } else {
-                    header("location:../public/main.php");
+                    header("location:./main.php");
                 }
             }
             ?>

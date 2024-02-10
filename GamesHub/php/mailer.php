@@ -4,6 +4,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 require "./vendor/autoload.php";
 session_start();
 
+
 function Enviar_correo($envio, $nombre, $cuerpo) {
     
     $mail = new PHPMailer();
@@ -24,7 +25,7 @@ function Enviar_correo($envio, $nombre, $cuerpo) {
     $mail->setFrom("sergio.seves9999@gmail.com", "yo");
 
     // Configura el asunto y el cuerpo del correo.
-    $mail->Subject = "Compra de GamesHub";
+    $mail->Subject = "GamesHub";
     $mail->Body = $cuerpo;
     $mail->isHTML(false);
 
@@ -39,9 +40,20 @@ function Enviar_correo($envio, $nombre, $cuerpo) {
         /* echo "<br><br><br>Error: " . $mail->ErrorInfo . "<br><br><br>"; */
     } else {
         $_SESSION["Carrito"] =[];
-        $_SESSION["verde"]=true;
-        header("location:../public/main.php");
+
+        if(isset($_SESSION["Rol"])){
+            $_SESSION["verde"]=true;
+        }
+        
+        if(isset($_SESSION["cuerpo"])){
+            header("location:../public/login.php?redirigido=true");
+        }
+        else{
+            header("location:../public/main.php");
+        }
+        
     }
 }
 
+Enviar_correo($_SESSION["mail"],$_SESSION["nombre"],$_SESSION["cuerpo"]);
 ?>
