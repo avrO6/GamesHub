@@ -81,7 +81,7 @@
         }
 
         $db->commit();
-        Enviar_correo($_SESSION["Correo"], $_SESSION["Name"], $cuerpo_correo_str); 
+        Enviar_correo($_POST["email"], $_SESSION["Name"], $cuerpo_correo_str); 
         actualizar_puntos();
 
     } catch (PDOException $e) {
