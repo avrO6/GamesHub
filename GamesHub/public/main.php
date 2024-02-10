@@ -9,7 +9,6 @@ if (isset($_POST["añadir_carrito"])){
         try {
             
             añadirAlCarrito($_POST["añadir_carrito"]);
-           
             
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();

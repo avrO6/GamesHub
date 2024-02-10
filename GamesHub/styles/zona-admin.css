@@ -134,6 +134,7 @@ table td, table tr{
 section{
     display: flex;
     justify-content: space-around;
+    margin-bottom: 80px;
 }
 
 section form input{
@@ -153,6 +154,7 @@ section form, section h1{
 
 select,button,textarea,input{
     background-color: #CCCCCC;
+    border: 2px solid var(--Negro);
 }
 
 button{
@@ -174,4 +176,49 @@ select option{
     border: 2px solid  var(--Negro);
     border-radius: 20px;
     padding: 20px;
+}
+
+.fade-in-out {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #f44336; /* Color de fondo rojo */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000; /* Asegura que el contenedor esté arriba de otros elementos */
+    opacity: 0;
+    animation: fade-in-out 3s ease-in-out; /* Duración de la animación: 1 segundo */
+}
+
+/* Mensaje de exito y de error */
+.fade-in-out-verde {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #3aad3c; /* Color de fondo rojo */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    z-index: 1000; /* Asegura que el contenedor esté arriba de otros elementos */
+    opacity: 0;
+    animation: fade-in-out 3s ease-in-out; /* Duración de la animación: 1 segundo */
+}
+
+
+/* Definir la animación */
+@keyframes fade-in-out {
+    from {
+        display: block;
+        opacity: 1;
+    }
+    to {
+        display: block;
+        opacity: 0;
+    }
+
 }
