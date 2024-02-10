@@ -56,10 +56,10 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="basic-addon1">@</span>
-                    <input type="text" class="form-control" placeholder="E-mail" name="email" aria-label="Username" aria-describedby="basic-addon1 " value="<?php echo $_SESSION['Correo'] ;  ?>">
+                    <input type="email" class="form-control" placeholder="E-mail" name="email" aria-label="Username" aria-describedby="basic-addon1 " value="<?php echo $_SESSION['Correo'] ;  ?>">
                 </div>
                 <div class="input-group mb-3 dinero">
-                    <input type="text" class="form-control" name="email" aria-label="Username" aria-describedby="basic-addon1" value="<?php echo"$total"?>" readonly>
+                    <input type="text" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" value="<?php echo"$total"?>" readonly>
                     <span class="input-group-text" id="basic-addon1">€</span>
                 </div>
 

@@ -77,15 +77,17 @@
 
         if($err){
             $db->rollBack();
-            header("location:../public/checkout.php?error=true");
+            /* echo "Error: " . $e->getMessage(); */
+            header("location:../public/checkout.php?error=true"); 
         }
 
         $db->commit();
-        Enviar_correo($_POST["email"], $_SESSION["Name"], $cuerpo_correo_str); 
+         Enviar_correo($_POST["email"], $_SESSION["Name"], $cuerpo_correo_str); 
+
         actualizar_puntos();
 
     } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+        /* echo "Error: " . $e->getMessage(); */
         $db->rollBack();
         header("location:../public/checkout.php?error=true");
     }

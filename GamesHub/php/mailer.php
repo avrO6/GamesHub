@@ -36,7 +36,7 @@ function Enviar_correo($envio, $nombre, $cuerpo) {
     $result = $mail->send();
     if (!$result) {
         header("location:../public/checkout.php?error=true");
-        echo "<br><br><br>Error: " . $mail->ErrorInfo . "<br><br><br>";
+        /* echo "<br><br><br>Error: " . $mail->ErrorInfo . "<br><br><br>"; */
     } else {
         $_SESSION["Carrito"] =[];
         $_SESSION["verde"]=true;
