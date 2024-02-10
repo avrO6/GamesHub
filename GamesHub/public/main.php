@@ -2,6 +2,9 @@
 session_start();
 require "../php/funciones.php";
 
+if(isset($_SESSION['cuerpo'])){
+    unset($_SESSION['cuerpo']);
+}
 
 if (isset($_POST["añadir_carrito"])){
 
