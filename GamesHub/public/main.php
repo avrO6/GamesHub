@@ -3,17 +3,31 @@ session_start();
 require "../php/funciones.php";
 
 
-if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
-    try {
-        añadirAlCarrito($_POST["añadir_carrito"]);
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+if (isset($_POST["añadir_carrito"])){
+
+    if( isset($_SESSION["Rol"])) {
+        try {
+            
+            añadirAlCarrito($_POST["añadir_carrito"]);
+           
+            
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }else{
+        echo "<div class='fade-in-out show'><p>Inicie sesion para añadir al carro</p></div>";
     }
-}
-if(isset($_SESSION["verde"])&& $_SESSION["verde"]=true){
+} 
+
+
+
+
+ if(isset($_SESSION["verde"]) && $_SESSION["verde"]==true){
     echo "<div class='fade-in-out-verde show'><p>Se ha realizado la compra correctamente</p></div>";
-}
-$_SESSION["verde"]=false;
+    $_SESSION["verde"]=false; 
+} 
+
+
 
 ?>
 
@@ -157,7 +171,7 @@ $_SESSION["verde"]=false;
                 $consulta->execute(array($nombre));
 
                 foreach ($consulta as $filas) {
-                    echo "<form method='POST'> <div class='card' style='width: 18rem;'>
+                    echo "<form active='main.php' method='POST'> <div class='card' style='width: 18rem;'>
                                 <img src='../img/" . $filas["Nombre"] . ".png' class='card-img-top' alt='...'>
                                 <div class='card-body'>
                                 <h5 class='card-title'>" . $filas["Nombre"] . "&nbsp&nbsp&nbsp" . $filas["Precio"] . "€" . "</h5>
@@ -172,7 +186,7 @@ $_SESSION["verde"]=false;
                 $consulta->execute(array());
 
                 foreach ($consulta as $filas) {
-                    echo "<form method='POST'> <div class='card' style='width: 18rem;'>
+                    echo "<form active='main.php' method='POST'> <div class='card' style='width: 18rem;'>
                                     <img src='../img/" . $filas["Nombre"] . ".png' class='card-img-top' alt='...'>
                                     <div class='card-body'>
                                     <h5 class='card-title'>" . $filas["Nombre"] . "&nbsp&nbsp&nbsp" . $filas["Precio"] . "€" . "</h5>

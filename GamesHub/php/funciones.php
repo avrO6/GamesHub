@@ -1,4 +1,6 @@
 <?php
+
+/* En caso de que el dato que se inserte sea negativo la funcion lo cambia a 0 */
 function controlar_negativos($dinero)
 {
     if ($dinero < 0) {
@@ -9,12 +11,14 @@ function controlar_negativos($dinero)
     return $dinero;
 };
 
+/* funcion que utilizamos para calcular los puntos que damos al usuario despues de hacer una compra */
 function calcular_puntos($dinero)
 {
     $puntos = round($dinero * 0.10) * 100;
     return $puntos;
 }
 
+/* Esta funcion hace una consulta a la base de datos Para actualizar la variable de puntos  */
 function actualizar_puntos()
 {
     $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
@@ -29,15 +33,17 @@ function actualizar_puntos()
     $_SESSION["Puntos"] =  $consulta["puntos"];
 }
 
+    /* funcion para añadir al carro pasandole a la funcion el id del producto */
 function añadirAlCarrito($idProducto)
 {
+
+    $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
+    $usuario = "root";
+    $contraseña = "";
+    $db = new PDO($cadena_conexion, $usuario, $contraseña);
     // Verificar si la ID del producto ya existe en el array
     if (array_key_exists($idProducto, $_SESSION["Carrito"])) {
 
-        $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
-        $usuario = "root";
-        $contraseña = "";
-        $db = new PDO($cadena_conexion, $usuario, $contraseña);
         //Preguntamos a la base de datos la cantidad de productos que tenemos para comprobar si se puede añadir
         try{
             $consulta = $db->prepare("SELECT clave FROM claves WHERE id_producto = ? ");
@@ -45,11 +51,14 @@ function añadirAlCarrito($idProducto)
             $consulta->fetchAll();
             if($consulta->rowCount() <= $_SESSION["Carrito"][$idProducto]){
                 echo "<div class='fade-in-out show'><p>No hay stock del producto elegido</p></div>";
+
                
             }else{
-                $_SESSION["verde"]=false;
+                
                 $_SESSION["Carrito"][$idProducto]++;
+                
             }
+
         }catch(PDOException $e){
 
             echo "<p>Error al añadir  Producto</p>";
@@ -57,7 +66,20 @@ function añadirAlCarrito($idProducto)
 
     } else {
         // Si no existe, agregamos un nuevo elemento con valor 1
-        $_SESSION["Carrito"][$idProducto] = 1;
+        $consulta = $db->prepare("SELECT clave FROM claves WHERE id_producto = ? ");
+        $consulta->execute(array($idProducto));
+        $consulta->fetchAll();
+
+        if($consulta->rowCount()==0){
+
+            echo "<div class='fade-in-out show'><p>No hay stock del producto elegido</p></div>";
+           
+        }else{
+            
+            $_SESSION["Carrito"][$idProducto] = 1;
+            
+        }
+        
     }
 
     /* Funcion de Hector solo mirar */

@@ -39,8 +39,8 @@ function Enviar_correo($envio, $nombre, $cuerpo) {
         echo "<br><br><br>Error: " . $mail->ErrorInfo . "<br><br><br>";
     } else {
         $_SESSION["Carrito"] =[];
-        $_SESSION["verde"] = true;
-        header("location:../public/main.php?");
+        $_SESSION["verde"]=true;
+        header("location:../public/main.php");
     }
 }
 

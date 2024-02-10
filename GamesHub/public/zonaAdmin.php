@@ -25,19 +25,20 @@
 </head>
 <body data-bs-theme="dark">
 <aside>
-
-<div >
+        <div class="logo"><img src="../img/logo.png"></div>
+<div class="patras">
     <span>
-        <b><a class="nav-link" href="../public/main.php">Pagina principal</a></b>
+        <b><a class="nav-link" href="../public/main.php"><img src="../img/casa_blanca.png"></a> <span><----pagina principal</span></b>
     </span>
 
 </div>
 
+<h1>Zona De Administración</h1>
 </aside>
 
 <main>
 <h1>Mostrar tabla</h1>
-
+<br>
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
     <select name="opcion">
         <option name="opcion" value="productos">Producto</option>
@@ -46,6 +47,8 @@
     </select>
 
     <button name="mostrar" type="submit">Mostrar tabla</button>
+    <br>
+    <br>
 </form>
 
 <?php 
@@ -80,7 +83,7 @@
             if(isset($filas[2])){ echo "<td><div class='descrpipcion'>" . $filas[2] . "</div></td>";};
              if(isset($filas[3])){ echo "<td><div class='descrpipcion'>" . $filas[3] . "</div></td>";}; 
              if(isset($filas[4])){ echo "<td><div class='descrpipcion'>" . $filas[4] . "</div></td>";}; 
-             echo "</tr>";
+             echo "</tr>  ";
         }
     echo "</table></div>";
 
@@ -89,6 +92,7 @@
 
 <br>
 <h1>Añadir producto</h1>
+<br>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="contenedor">
             <div>
@@ -140,6 +144,7 @@
     </form>
     <br>
     <h1>Añadir Clave</h1>
+    <br>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="contenedor">
             <div>

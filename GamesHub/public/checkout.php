@@ -46,7 +46,7 @@
                 <div class="input-group">
                     <span class="input-group-text">First and last name</span>
                     <input type="text" aria-label="First name" class="form-control" pattern="[A-Za-z]+" name="nombre" required>
-                    <input type="text" aria-label="Last name" class="form-control" pattern="[A-Za-z]+" name="apellido" required>
+                    <input type="text" aria-label="Last name" class="form-control" pattern="[A-Za-z\s]+" name="apellido" required>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Nº Targeta</span>
