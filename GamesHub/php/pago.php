@@ -53,7 +53,7 @@
 
             /* EN CASO DE QUE UN PRODUCTO SE PIDA MAS DE UNA VEZ */
             foreach ($producto as $fila) {
-                $cuerpo_correo = array_merge($cuerpo_correo, ["\n Su clave para el juego " . $nombre["Nombre"] . " es: \n" . $fila["clave"]   . "."]);
+                $cuerpo_correo = array_merge($cuerpo_correo, ["\n Su clave para " . $nombre["Nombre"] . " es: \n" . $fila["clave"]   . "."]);
 /*                 $eliminar = $db->prepare("DELETE FROM claves WHERE clave = ? LIMIT 1"); 
                 $result=$eliminar->execute(array($fila["clave"])); 
  */
