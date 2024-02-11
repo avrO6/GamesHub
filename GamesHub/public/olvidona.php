@@ -53,7 +53,9 @@ if (isset($_POST["cambiar_contraseña"])) {
     <main>
 
         <div class="form">
-
+            <div class="volver">
+                <a href="login.php"><-- Volver al Login</a>
+            </div>
             <form action="" method="post">
 
                 <div class="input-group mb-3 dinero">

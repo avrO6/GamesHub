@@ -6,6 +6,7 @@
     if(isset($_GET["error"])){
         echo "<div class='fade-in-out show'><p>Error al intentar hacer la transacción</p></div>";
     };
+
     if(isset($_SESSION["total"])){
         if($_SESSION["total"]==0){
             header("location:carrito.php");
@@ -22,6 +23,10 @@
 
     }
     $total = controlar_negativos($_SESSION["total"]);
+
+    if(!isset($_POST["checkout"])){
+        header("location:main.php");
+    }
 ?>
 
 <!DOCTYPE html>
@@ -37,9 +42,14 @@
 </head>
 
 <body data-bs-theme="dark">
+
+            
     <main>
 
         <div class="form">
+            <div class="volver">
+                <a href="carrito.php"><-- Volver a tu Carrito</a>
+            </div>
 
             <form action="../php/pago.php" method="post">
 
