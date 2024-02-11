@@ -53,8 +53,8 @@
 
             /* EN CASO DE QUE UN PRODUCTO SE PIDA MAS DE UNA VEZ */
             foreach ($producto as $fila) {
-                $cuerpo_correo = array_merge($cuerpo_correo, ["\n Su clave para " . $nombre["Nombre"] . " es: \n" . $fila["clave"]   . "."]);
-/*                 $eliminar = $db->prepare("DELETE FROM claves WHERE clave = ? LIMIT 1"); 
+                $cuerpo_correo = array_merge($cuerpo_correo, ["\n Su clave para " . $nombre["Nombre"] . " es: \n" . $fila["clave"]   . ".\n\n\nUnete a Nuestro discord para estar informado de nuestras actualizaciones --->😎 https://discord.gg/MMYmZZwx7k 👌"]);
+/*                $eliminar = $db->prepare("DELETE FROM claves WHERE clave = ? LIMIT 1"); 
                 $result=$eliminar->execute(array($fila["clave"])); 
  */
                 if(!$result){

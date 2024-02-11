@@ -19,11 +19,14 @@ if (isset($_POST["cambiar_contraseña"])) {
         }
         else{
 
-            echo $err;
-            $_SESSION["mail"] =$_POST["email"];
-            $_SESSION["nombre"]=$_POST["nombre"];
-            $_SESSION["cuerpo"] = $_POST["nombre"].",\nSu contraseña  es : \n".$contraseña["passwd"]."\n\n\nUnete a Nuestro discord para estar informado de nuestras actualizaciones --->😎 https://discord.gg/MMYmZZwx7k 👌";
-            header("location:../php/mailer.php");
+            echo $err;   
+                $_SESSION["mail"] =[
+                    "nombre" => $_POST["nombre"],
+                    "cuerpo" => $_POST["nombre"].",\nSu contraseña  es : \n".$contraseña["passwd"]."\n\n\nUnete a Nuestro discord para estar informado de nuestras actualizaciones --->😎 https://discord.gg/MMYmZZwx7k 👌",
+                    "mail" => $_POST["email"]
+                ];  
+                 
+            header("location:../php/mailer.php?olvidona=true");
         }
     
     } catch (PDOException $e) {

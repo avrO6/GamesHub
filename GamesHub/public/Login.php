@@ -1,10 +1,9 @@
 
 <?php
-    $_SESSION["verde"]=false;
     
 if (isset($_GET["redirigido"])) {
     echo "<div class='fade-in-out-verde show'><p>Se le ha enviado un correo con su contraseña</p></div>";
-
+    echo "<meta http-equiv='refresh' content='1.8;url=login.php'>";
 }
 
 if(isset($_GET["carro"])){
@@ -41,6 +40,7 @@ function comprobar_usuario($email, $passwd)
             $_SESSION["Name"] = $row["Name"];
             $_SESSION["Puntos"] = $row["puntos"];
             $_SESSION["Carrito"] = [];
+            $_SESSION["verde"]=false;
         }
         
         return true;

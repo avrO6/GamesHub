@@ -45,8 +45,20 @@ function Enviar_correo($envio, $nombre, $cuerpo) {
             $_SESSION["verde"]=true;
         }
         
-        if(isset($_SESSION["cuerpo"])){
+        if(isset($_GET["olvidona"])){
             header("location:../public/login.php?redirigido=true");
+        }
+        else if(isset($_GET["asistencia"])){
+
+            if($_SESSION["mail"]["respuesta"]==true){
+
+                $_SESSION["mail"]["respuesta"]=false;
+
+                Enviar_correo($_SESSION["mail"]["mail_pagina"],$_SESSION["mail"]["nombre"],"Hemos sido indormados de su problema lo resolveremos lo antes posible\n un saludo GamesHub.\n\n\nUnete a Nuestro discord para estar informado de nuestras actualizaciones --->😎 https://discord.gg/MMYmZZwx7k 👌"); 
+
+            }else{
+                header("location:../public/main.php?redirigido=true");
+            }
         }
         else{
             header("location:../public/main.php");
@@ -55,5 +67,8 @@ function Enviar_correo($envio, $nombre, $cuerpo) {
     }
 }
 
-Enviar_correo($_SESSION["mail"],$_SESSION["nombre"],$_SESSION["cuerpo"]);
+if($_SERVER["REQUEST_METHOD"] == "GET"){
+ Enviar_correo($_SESSION["mail"]["mail"],$_SESSION["mail"]["nombre"],$_SESSION["mail"]["cuerpo"]);
+}
+
 ?>

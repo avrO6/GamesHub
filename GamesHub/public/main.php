@@ -21,12 +21,14 @@ if (isset($_POST["añadir_carrito"])){
     }
 } 
 
-
-
-
  if(isset($_SESSION["verde"]) && $_SESSION["verde"]==true){
     echo "<div class='fade-in-out-verde show'><p>Se ha realizado la compra correctamente</p></div>";
     $_SESSION["verde"]=false; 
+} 
+
+if(isset($_GET["redirigido"]) && $_GET["redirigido"]=="true"){
+    echo "<div class='fade-in-out-verde show'><p>Se ha enviado el mensaje con exito</p></div>";
+    echo "<meta http-equiv='refresh' content='1.8;url=main.php'>";
 } 
 
 
@@ -121,7 +123,7 @@ if (isset($_POST["añadir_carrito"])){
                     <b><a class="nav-link" href="https://discord.gg/MMYmZZwx7k">Comunidad</a></b>
                 </span>
                 <span>
-                    <b><a class="nav-link" href="#">Atencion al Cliente</a></b>
+                    <b><a class="nav-link" href="asistencia.php">Atencion al Cliente</a></b>
                 </span>
 
                 <?php

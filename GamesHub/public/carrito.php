@@ -6,6 +6,7 @@
     if(!isset($_SESSION["Carrito"])){
         header("location: Login.php?carro=true");
     }
+    
     $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
     $usuario = "root";
     $contraseña = "";

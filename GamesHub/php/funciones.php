@@ -51,12 +51,12 @@ function añadirAlCarrito($idProducto)
             $consulta->fetchAll();
             if($consulta->rowCount() <= $_SESSION["Carrito"][$idProducto]){
                 echo "<div class='fade-in-out show'><p>No hay stock del producto elegido</p></div>";
-                echo "<META HTTP-EQUIV='Refresh' CONTENT=1.8; URL='main.php'>";
+                echo "<meta http-equiv='refresh' content='1.8;url=main.php'>";
                
             }else{
                 
                 $_SESSION["Carrito"][$idProducto]++;
-                echo "<META HTTP-EQUIV='Refresh' CONTENT=0; URL='main.php'>";
+                echo "<meta http-equiv='refresh' content='0;url=main.php'>";
                 
             }
 
@@ -76,7 +76,8 @@ function añadirAlCarrito($idProducto)
             echo "<div class='fade-in-out show'><p>No hay stock del producto elegido</p></div>";
            
         }else{
-            echo "<META HTTP-EQUIV='Refresh' CONTENT=0; URL='zonaAdmin.php'>";
+            
+            echo "<meta http-equiv='refresh' content='0;url=main.php'>";
             $_SESSION["Carrito"][$idProducto] = 1;
             
         }
