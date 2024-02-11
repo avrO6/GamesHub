@@ -54,7 +54,7 @@ function Enviar_correo($envio, $nombre, $cuerpo) {
 
                 $_SESSION["mail"]["respuesta"]=false;
 
-                Enviar_correo($_SESSION["mail"]["mail_pagina"],$_SESSION["mail"]["nombre"],"Hemos sido indormados de su problema lo resolveremos lo antes posible\n un saludo GamesHub.\n\n\nUnete a Nuestro discord para estar informado de nuestras actualizaciones --->😎 https://discord.gg/MMYmZZwx7k 👌"); 
+                Enviar_correo($_SESSION["mail"]["mail_pagina"],$_SESSION["mail"]["nombre"],"Hemos sido informados de su problema lo resolveremos lo antes posible.\nUn saludo del equipo de GamesHub.\n\n\nUnete a Nuestro discord para estar informado de nuestras actualizaciones --->😎 https://discord.gg/MMYmZZwx7k 👌"); 
 
             }else{
                 header("location:../public/main.php?redirigido=true");
