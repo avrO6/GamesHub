@@ -2,13 +2,24 @@
 session_start();
 require "../php/funciones.php";
 
-if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
-    try {
-        añadirAlCarrito($_POST["añadir_carrito"]);
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+
+/* compruebo que se halla dado al boton de añadir al carrito para añadir los productos */
+if (isset($_POST["añadir_carrito"])){
+
+    if( isset($_SESSION["Rol"])) {
+        try {
+            /* llamamos a la funcion de añadir carrito y le pasamo el parametro que contiene el id del 
+            producto seleccionado */
+            añadirAlCarrito($_POST["añadir_carrito"]);
+            
+        } catch (PDOException $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }else{
+        /* si no has iniciado sesion te redirigirá al login con un mensaje */
+        echo "<div class='fade-in-out show'><p>Inicie sesion para añadir al carro</p></div>";
     }
-}
+} 
 ?>
 
 <!DOCTYPE html>
@@ -102,7 +113,7 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
                 </span>
 
                 <?php
-
+                     /* muestro el enlace a la zona admin en caso de que el usuario logeado tenga rol 0 */
                 if (isset($_SESSION["Rol"]) && $_SESSION["Rol"] == 0) {
                     echo "
                         <span>
@@ -121,7 +132,8 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
                 <div class="content-avatar">
 
                     <?php
-
+                        /* muestro los puntos del usuario y el enlace para desloguearse en caso de que tengas la sesion
+                        iniciada y si no te muestra solo el enlace para iniciar sesion */
                     if (isset($_SESSION["Rol"])) {
                         echo ('<button class="btn btn-outline-light">' . $_SESSION["Puntos"] . ' GP</button>');
                         echo ('<a class="nav-link" href="../php/logout.php">Log out</a>');
@@ -129,11 +141,6 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
 
                         echo ('<a class="nav-link" href="login.php">Log in</a>');
                     }
-
-                    $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
-                    $usuario = "root";
-                    $contraseña = "";
-                    $db = new PDO($cadena_conexion, $usuario, $contraseña);
                     ?>
 
                 </div>
@@ -149,30 +156,40 @@ if (isset($_POST["añadir_carrito"]) && isset($_SESSION["Rol"])) {
             $contraseña = "";
             $db = new PDO($cadena_conexion, $usuario, $contraseña);
 
+            /* Este código se ejecuta en caso de usar el buscador */
             if (isset($_POST["buscador"])) {
-                $nombre = "%" . $_POST["texto_bus"] . "%";
-                $consulta = $db->prepare("SELECT ID, Precio, Categoria, Descripcion, Nombre FROM productos WHERE Nombre LIKE ?");
-                $consulta->execute(array($nombre));
-
-                foreach ($consulta as $filas) {
-                    echo "<form action='' method='POST'> <div class='card' style='width: 18rem;'>
-                                <img src='../img/" . $filas["Nombre"] . ".png' class='card-img-top' alt='...'>
-                                <div class='card-body'>
-                                <h5 class='card-title'>" . $filas["Nombre"] . "&nbsp&nbsp&nbsp" . $filas["Precio"] . "€" . "</h5>
-                                <p class='card-text'>" . $filas["Descripcion"] . "</p>
-                                <button value=" . $filas["ID"] . " name='añadir_carrito' type='submit' class='btn btn-primary'>Añadir al carrito</button>
-                                </div>
-                                </div>
-                            </form>  ";
-                }
-            } else {
+                /* Se construye un patrón de búsqueda para el nombre del producto en el que los porcentajes en sql  indican 
+                cualquier caracter*/
+               $nombre = "%" . $_POST["texto_bus"] . "%"; 
+           
+               // Buscamos productos que coincidan con el nombre
+               $consulta = $db->prepare("SELECT ID, Precio, Categoria, Descripcion, Nombre FROM productos WHERE Nombre LIKE ?");
+               $consulta->execute(array($nombre));
+           
+               // Mostramos los productos encontrados
+               foreach ($consulta as $filas) {
+                   // Formulario para añadir productos al carrito
+                   echo "<form action='main.php' method='POST'> <div class='card' style='width: 18rem;'>
+                               <img src='../img/" . $filas["Nombre"] . ".png' class='card-img-top' alt='...'>
+                               <div class='card-body'>
+                               <h5 class='card-title'>" . $filas["Nombre"] . "&nbsp&nbsp&nbsp" . $filas["Precio"] . "€" . "</h5>
+                               <p class='card-text'>" . $filas["Descripcion"] . "</p>
+                               <button value=" . $filas["ID"] . " name='añadir_carrito' type='submit' class='btn btn-primary'>Añadir al carrito</button>
+                               </div>
+                               </div></form>  ";
+               }
+            }else {
+                /* muestro los productos en funcion del apartado que hallan seleccionado en la pagina principal */
 
                 if (isset($_GET["redirigido"])) {
 
+                    // Obtenemos todos los productos que cumplen las condiciones
                     $consulta = $db->prepare("SELECT ID,Precio,Categoria,Descripcion,Nombre FROM productos Where Categoria =? ");
                     $consulta->execute(array($_GET["redirigido"]));
 
+                    // Mostramos todos los productos
                     foreach ($consulta as $filas) {
+                        /* formulario del producto */
                         echo "<form method='POST'> <div class='card' style='width: 18rem;'>
                                 <img src='../img/" . $filas["Nombre"] . ".png' class='card-img-top' alt='...'>
                                 <div class='card-body'>

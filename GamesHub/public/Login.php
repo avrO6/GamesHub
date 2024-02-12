@@ -1,13 +1,18 @@
 
 <?php
-    
+
+/* mensaje que aparece despues de pedir un correo para recordar la contraseña */    
 if (isset($_GET["redirigido"])) {
     echo "<div class='fade-in-out-verde show'><p>Se le ha enviado un correo con su contraseña</p></div>";
+    /* esta linea me permiete recargar la pagina tras un lapso de tiempo en este caso 1.8 segundos 
+    con http-equiv='refresh' le especificas que lo que quieres  es actualizar o redirigir 
+    con content='1.8;url=login.php' le especifico el tiempo de retraso y la dirección*/
     echo "<meta http-equiv='refresh' content='1.8;url=login.php'>";
 }
-
+/* en caso de intentar entrar al carro sin iniciar sesion se te enviara al login y se mostrará este mensaje */
 if(isset($_GET["carro"])){
     echo "<div class='fade-in-out-rojo show'><p>Necesitas iniciar sesion para acceder al carrito</p></div>";
+    echo "<meta http-equiv='refresh' content='1.8;url=login.php'>";
 }
 
 function comprobar_usuario($email, $passwd)

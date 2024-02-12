@@ -4,7 +4,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 require "./vendor/autoload.php";
 session_start();
 
-
+ /* Funcion para enviar un correo */
 function Enviar_correo($envio, $nombre, $cuerpo) {
     
     $mail = new PHPMailer();
@@ -39,6 +39,7 @@ function Enviar_correo($envio, $nombre, $cuerpo) {
         header("location:../public/checkout.php?error=true");
         /* echo "<br><br><br>Error: " . $mail->ErrorInfo . "<br><br><br>"; */
     } else {
+
         $_SESSION["Carrito"] =[];
 
         if(isset($_SESSION["Rol"])){
@@ -67,6 +68,7 @@ function Enviar_correo($envio, $nombre, $cuerpo) {
     }
 }
 
+/* si has sido enviado a esta pagina desde el metodo get entras en el if */
 if($_SERVER["REQUEST_METHOD"] == "GET"){
  Enviar_correo($_SESSION["mail"]["mail"],$_SESSION["mail"]["nombre"],$_SESSION["mail"]["cuerpo"]);
 }

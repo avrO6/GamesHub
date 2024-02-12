@@ -1,9 +1,13 @@
 <?php 
     session_start();
     require "../php/funciones.php";
+
+    /* llamo a la funcion productos para que siempre que se entre a esta pagina este
+    la variable $_SESSION["puntos"] actualizada */
     actualizar_puntos();
 
-    if(!isset($_SESSION["Carrito"])){
+    /* no te permite entrar al carrito si no has iniciado sessión */
+    if(!isset($_SESSION["Carrito"]) || $_SESSION["Carrito"]==[]){
         header("location: Login.php?carro=true");
     }
     
@@ -12,16 +16,16 @@
     $contraseña = "";
     $db = new PDO($cadena_conexion, $usuario, $contraseña);
 
-    
+     /* guado la los datos de los productos añadidos al carrito */
         $arr1 = $_SESSION["Carrito"];
 
+        /* en caso de usar el boton de eliminar*/
     if(isset($_POST["eliminar"])){
-        unset($_SESSION["Carrito"][$_POST['eliminar']]);
-        header("location:carrito.php");
 
+        //se elimina del array del carrito la posicion seleccionada
+        unset($_SESSION["Carrito"][$_POST['eliminar']]);//$_POST["contiene el id del producto seleccionado"]
+        header("location:carrito.php");
     }
-    
-    $precio_total = 0
 
 ?>
 
@@ -52,20 +56,17 @@
             <!-- Dinamico aqui -->
 
             <?php 
+            $precio_total =0;
+             /* arr1 contiene en el apartado de la clave el id del producto y el valor es la cantidad */
                 foreach ($arr1 as $clave => $valor) {
-                    // Aquí puedes usar $clave como tu ID en una consulta
-                
+                    /* busco el producto en funcion de la clave  */
                     $consulta = $db->prepare( "SELECT ID, Precio, Categoria, Nombre FROM productos WHERE id = ?");
                     $consulta->execute(array($clave));
-                    // Tu lógica de consulta aquí, por ejemplo:
-                    // $consulta = "SELECT * FROM tu_tabla WHERE id = $clave";
-                    // Ejecutar la consulta...
 
-                    
                     $producto = $consulta->fetch();
-
+                    /* guardo el valor total del  juego y sus copias */
                     $precio_prod = $valor*($producto["Precio"]);
-                    
+                        /* muestro el producto  */
                         echo "<form action=" .htmlspecialchars($_SERVER["PHP_SELF"]) . " method='post'><div class='productos'>
                         <div class='producto'>
                             <img src='../img/".$producto["Nombre"].".png' alt='Producto.'>
@@ -77,7 +78,8 @@
                             <button value='".$clave."' name='eliminar' type='submit'><img src='../img/borrar.png' alt=''></button>
                         </div>
                         </div></form>";
-                    
+                 
+                        /* summo el precio de todos los productos */
                     $precio_total = $precio_total + $precio_prod;
                 }
             ?>
@@ -109,6 +111,7 @@
                 <form action="./checkout.php" method="post">
 
                     <?php
+                    /* paso los puntos a lo que seria en dinero  */
                         $puntos = round($_SESSION['Puntos'] / 100);
                         echo "                 
                             <h3>Resumen</h3>
@@ -133,14 +136,14 @@
                             </div>
         
                             <div class='resum'>
-                                <span>Total + descuento</span>
-                                <span id='descuento'> ".controlar_negativos($precio_total - $puntos)." €</span>
+                                <span>Total + descuento</span> 
+                                <span id='descuento'> ".controlar_negativos($precio_total - $puntos)/* calculo el descuento */." €</span>
                             </div>
         
                             <button name='checkout' type='submit' class='btn btn-primary'>Checkout</button>";
 
                             $_SESSION["total"] = $precio_total;
-                            $_SESSION["descuento"] = controlar_negativos(round($_SESSION['Puntos'] / 100));
+                            $_SESSION["descuento"] = controlar_negativos($puntos);
                     ?>
 
 <!--                     <h3>Resumen</h3>

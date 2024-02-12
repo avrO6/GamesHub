@@ -2,19 +2,32 @@
     session_start();
     require "../php/funciones.php";
 
-
+    /* la compra no salio bien */
     if(isset($_GET["error"])){
         echo "<div class='fade-in-out show'><p>Error al intentar hacer la transacción</p></div>";
     };
 
+        /* en caso de intentar entrar a la pagina sin darle al boton de comprar te mandará a
+    la página principal */
+    if(!isset($_POST["checkout"])){
+        header("location:main.php");
+    }
+
+    /* impedir que se haga un pago si no has seleccionado productos */
     if(isset($_SESSION["total"])){
         if($_SESSION["total"]==0){
             header("location:carrito.php");
         }
     }
+
+
+    /* si seleccionas checkout en el carrito, se guarda el dinero de todos los productos seleccionados
+    y se guarda el descuento que se haría */
     if(isset($_POST["checkout"])){
         $total = $_SESSION["total"];
         $descuento = $_SESSION["descuento"];
+        /* en caso de elegir aplicar el descuento actualizo la variable de sesion que almacena los puntos del ususario
+        calculo el total que seria el precio de todos los prodictos menos el descuento */
         if(isset($_POST["check"])!=null ){
             $_SESSION["Puntos"]= controlar_negativos($_SESSION["Puntos"]-round($total*100));
             $total = $total-$descuento;
@@ -22,11 +35,9 @@
         }
 
     }
+    /* controlo de que el resultado no salga negativo */
     $total = controlar_negativos($_SESSION["total"]);
 
-    if(!isset($_POST["checkout"])){
-        header("location:main.php");
-    }
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +71,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text" id="inputGroup-sizing-default">Nº Targeta</span>
-                    <input type="text" class="form-control" name="n-targeta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="1234-5678-9012-3456">
+                    <input type="text" class="form-control" name="tarjeta" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" placeholder="1234-5678-9012-3456">
                     <span class="input-group-text" id="inputGroup-sizing-default">CVV</span>
                     <input type="text" class="form-control" name="cvv" aria-label="Sizing example input" pattern="[0-9]{3}" aria-describedby="inputGroup-sizing-default" required>
                 </div>
@@ -80,6 +91,26 @@
         </div>
 
     </main>
+    <script>
+         /* script que controla el input donde metes la tarjeta  */
+        document.addEventListener('DOMContentLoaded', function () {
+            const tarjetaInput = document.querySelector('input[name="tarjeta"]');
+            
+            tarjetaInput.addEventListener('input', function() {
+                let valor = this.value.replace(/\D/g, ''); // Eliminar caracteres que no son dígitos
+                let formateado = '';
+
+                for (let i = 0; i < valor.length; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        formateado += '-';
+                    }
+                    formateado += valor[i];
+                }
+
+                this.value = formateado.substring(0, 19);
+            });
+        });
+    </script> 
 </body>
 
 </html>

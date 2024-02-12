@@ -1,8 +1,10 @@
 <?php   
     session_start();
-
+ /*  si has pulsado el boton de enviar mensaje 
+ se crea una variable de session que almacena los datos proporcionados por el ususario,
+ en el caso de la clave mail guardo un correo fijo por que en este caso ese es el correo de lapagina.
+ Despues lo redirigo a la pagina mailer.php que es donde se creará y se enviará el correo */
     if(isset($_POST["atencion_cliente"])){
-
         $_SESSION["mail"] =[
             "mail_pagina" => $_POST["email"],
             "nombre" => $_POST["nombre"],

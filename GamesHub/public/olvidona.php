@@ -1,25 +1,27 @@
 <?php
     session_start();
 
+
+    /* se entra en el if si se a pulsado el boton de recordar contraseña */
 if (isset($_POST["cambiar_contraseña"])) {
 
     $cadena_conexion = "mysql:dbname=gameshub;host=127.0.0.1";
     $usuario = "root";
     $contraseña_db = ""; 
-    $errmode = [PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT];
-
+    $errmode = [PDO::ATTR_ERRMODE => PDO::ERRMODE_SILENT];//Permite que una consulta te devuelva false en caso de que salga mal
     try {
         $db = new PDO($cadena_conexion, $usuario, $contraseña_db,$errmode);
 
+        /* buscamos la contraseña de la persona que tenga el correo y nombre especidicado en el formulario */
         $olvidona = $db->prepare("SELECT Correo,passwd,Name FROM usuarios WHERE  Name =? AND Correo = ? ");
         $olvidona->execute(array($_POST["nombre"],$_POST["email"]));
         $contraseña = $olvidona->fetch();
         if($contraseña==false){
             echo "<div class='fade-in-out-rojo show'><p>Nombre o correo no coinciden</p></div>";
         }
-        else{
-
-            echo $err;   
+        else{  
+            /* creo una variable que contiente los datos del cuerpo del correo y el nombre y correo del usuario 
+            despues lo redirijo a la pagina donde se usaran esos datos para enviar el mensaje*/
                 $_SESSION["mail"] =[
                     "nombre" => $_POST["nombre"],
                     "cuerpo" => $_POST["nombre"].",\nSu contraseña  es : \n".$contraseña["passwd"]."\n\n\nUnete a Nuestro discord para estar informado de nuestras actualizaciones --->😎 https://discord.gg/MMYmZZwx7k 👌",
@@ -30,8 +32,9 @@ if (isset($_POST["cambiar_contraseña"])) {
         }
     
     } catch (PDOException $e) {
+        /* si la consulta no sale bien significa que no había un usuario con ese correo  */
         echo $e->getMessage();
-        echo "<div class='fade-in-out-rojo show'><p>Error al modicar el usuario</p></div>";
+        echo "<div class='fade-in-out-rojo show'><p>Error,no exixte un usuario con ese correo</p></div>";
         
     }
 }
