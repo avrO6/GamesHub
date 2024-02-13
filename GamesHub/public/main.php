@@ -3,38 +3,37 @@ session_start();
 require "../php/funciones.php";
 
 /* me aseguro que $_SESSION["cuerpo solo exista cuando me hace falta"] */
-if(isset($_SESSION['cuerpo'])){
+if (isset($_SESSION['cuerpo'])) {
     unset($_SESSION['cuerpo']);
 }
 
 /* compruebo que se halla dado al boton de añadir al carrito para añadir los productos */
-if (isset($_POST["añadir_carrito"])){
+if (isset($_POST["añadir_carrito"])) {
 
-    if( isset($_SESSION["Rol"])) {
+    if (isset($_SESSION["Rol"])) {
         try {
             /* llamamos a la funcion de añadir carrito y le pasamo el parametro que contiene el id del 
             producto seleccionado */
             añadirAlCarrito($_POST["añadir_carrito"]);
-            
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }
-    }else{
+    } else {
         /* si no has iniciado sesion te redirigirá al login con un mensaje */
         echo "<div class='fade-in-out show'><p>Inicie sesion para añadir al carro</p></div>";
     }
-} 
+}
 
-    /* te muestra el mensaje si se ha enviado el mensaje de compra correctamente */
- if(isset($_SESSION["verde"]) && $_SESSION["verde"]==true){
+/* te muestra el mensaje si se ha enviado el mensaje de compra correctamente */
+if (isset($_SESSION["verde"]) && $_SESSION["verde"] == true) {
     echo "<div class='fade-in-out-verde show'><p>Se ha realizado la compra correctamente</p></div>";
-    $_SESSION["verde"]=false; 
-} 
-   /* Si entras en  atencion al cliente y mandas el mensaje exitosamente  te saldrá este mensaje */
-if(isset($_GET["redirigido"]) && $_GET["redirigido"]=="true"){
+    $_SESSION["verde"] = false;
+}
+/* Si entras en  atencion al cliente y mandas el mensaje exitosamente  te saldrá este mensaje */
+if (isset($_GET["redirigido"]) && $_GET["redirigido"] == "true") {
     echo "<div class='fade-in-out-verde show'><p>Se ha enviado el mensaje con exito</p></div>";
     echo "<meta http-equiv='refresh' content='1.8;url=main.php'>";
-} 
+}
 
 
 
@@ -132,7 +131,7 @@ if(isset($_GET["redirigido"]) && $_GET["redirigido"]=="true"){
                 </span>
 
                 <?php
-                     /* muestro el enlace a la zona admin en caso de que el usuario logeado tenga rol 0 */
+                /* muestro el enlace a la zona admin en caso de que el usuario logeado tenga rol 0 */
                 if (isset($_SESSION["Rol"]) && $_SESSION["Rol"] == 0) {
                     echo "
                         <span>
@@ -151,7 +150,7 @@ if(isset($_GET["redirigido"]) && $_GET["redirigido"]=="true"){
                 <div class="content-avatar">
 
                     <?php
-                        /* muestro los puntos del usuario y el enlace para desloguearse en caso de que tengas la sesion
+                    /* muestro los puntos del usuario y el enlace para desloguearse en caso de que tengas la sesion
                         iniciada y si no te muestra solo el enlace para iniciar sesion */
                     if (isset($_SESSION["Rol"])) {
                         echo ('<button class="btn btn-outline-light">' . $_SESSION["Puntos"] . ' GP</button>');
@@ -176,19 +175,19 @@ if(isset($_GET["redirigido"]) && $_GET["redirigido"]=="true"){
             $db = new PDO($cadena_conexion, $usuario, $contraseña);
 
             /* Este código se ejecuta en caso de usar el buscador */
-if (isset($_POST["buscador"])) {
-     /* Se construye un patrón de búsqueda para el nombre del producto en el que los porcentajes en sql  indican 
+            if (isset($_POST["buscador"])) {
+                /* Se construye un patrón de búsqueda para el nombre del producto en el que los porcentajes en sql  indican 
      cualquier caracter*/
-    $nombre = "%" . $_POST["texto_bus"] . "%"; 
+                $nombre = "%" . $_POST["texto_bus"] . "%";
 
-    // Buscamos productos que coincidan con el nombre
-    $consulta = $db->prepare("SELECT ID, Precio, Categoria, Descripcion, Nombre FROM productos WHERE Nombre LIKE ?");
-    $consulta->execute(array($nombre));
+                // Buscamos productos que coincidan con el nombre
+                $consulta = $db->prepare("SELECT ID, Precio, Categoria, Descripcion, Nombre FROM productos WHERE Nombre LIKE ?");
+                $consulta->execute(array($nombre));
 
-    // Mostramos los productos encontrados
-    foreach ($consulta as $filas) {
-        // Formulario para añadir productos al carrito
-        echo "<form action='main.php' method='POST'> <div class='card' style='width: 18rem;'>
+                // Mostramos los productos encontrados
+                foreach ($consulta as $filas) {
+                    // Formulario para añadir productos al carrito
+                    echo "<form action='main.php' method='POST'> <div class='card' style='width: 18rem;'>
                     <img src='../img/" . $filas["Nombre"] . ".png' class='card-img-top' alt='...'>
                     <div class='card-body'>
                     <h5 class='card-title'>" . $filas["Nombre"] . "&nbsp&nbsp&nbsp" . $filas["Precio"] . "€" . "</h5>
@@ -196,18 +195,18 @@ if (isset($_POST["buscador"])) {
                     <button value=" . $filas["ID"] . " name='añadir_carrito' type='submit' class='btn btn-primary'>Añadir al carrito</button>
                     </div>
                     </div></form>  ";
-    }
-} else {
-    // Si no se utiliza el buscador , mostramos todos los productos
+                }
+            } else {
+                // Si no se utiliza el buscador , mostramos todos los productos
 
-    // Obtenemos todos los productos
-    $consulta = $db->prepare("SELECT ID, Precio, Categoria, Descripcion, Nombre FROM productos");
-    $consulta->execute(array());
+                // Obtenemos todos los productos
+                $consulta = $db->prepare("SELECT ID, Precio, Categoria, Descripcion, Nombre FROM productos");
+                $consulta->execute(array());
 
-    // Mostramos todos los productos
-    foreach ($consulta as $filas) {
-        // Formulario del producto
-        echo "<form action='main.php' method='POST'> <div class='card' style='width: 18rem;'>
+                // Mostramos todos los productos
+                foreach ($consulta as $filas) {
+                    // Formulario del producto
+                    echo "<form action='main.php' method='POST'> <div class='card' style='width: 18rem;'>
                     <img src='../img/" . $filas["Nombre"] . ".png' class='card-img-top' alt='...'>
                     <div class='card-body'>
                     <h5 class='card-title'>" . $filas["Nombre"] . "&nbsp&nbsp&nbsp" . $filas["Precio"] . "€" . "</h5>
@@ -215,18 +214,10 @@ if (isset($_POST["buscador"])) {
                     <button value=" . $filas["ID"] . " name='añadir_carrito' type='submit' class='btn btn-primary'>Añadir al carrito</button>
                     </div>
                     </div></form>  ";
-    }
-}
+                }
+            }
 
             ?>
-            <!--             <div class="card" style="width: 18rem;">
-                <img src="../img/logo.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div> -->
 
         </section>
 
