@@ -84,24 +84,6 @@
                 }
             ?>
 
-<!--             <div class="productos">
-
-                <div class="producto">
-                    <img src="../img/gta VI.png" alt="Producto.">
-                    <span><b>GTA VI</b></span>
-                </div>
-
-                <div class="sumary">
-                    <span>"2"</span>
-                    <span>$$$</span>
-                    <button type="submit"><img src="../img/borrar.png" alt=""></button>
-                </div>
-
-
-            </div> -->
-
-
-
         </section>
 
         <aside>
@@ -145,36 +127,6 @@
                             $_SESSION["total"] = $precio_total;
                             $_SESSION["descuento"] = controlar_negativos($puntos);
                     ?>
-
-<!--                     <h3>Resumen</h3>
-
-                    <div class="resum">
-                        <span>Subtotal</span>
-                        <span>$$$</span>
-                    </div>
-
-                    <div class="resum">
-                        <span>PG</span>
-                        <span>XXXX</span>
-                    </div>
-
-                    <div class="resum">
-                        <span>Descuento</span>
-                        <span>$$$</span>
-                    </div>
-
-                    <div class="resum">
-                        <span>Total</span>
-                        <span>$$$</span>
-                    </div>
-
-                    <form action="">
-                        <div class="resum">
-                            <input type="checkbox" name="descuento"> Aplicar descuento
-                        </div>
-                    </form>
-
-                    <button type="submit" class='btn btn-primary'>Checkout</button> -->
 
                 </form>
                 
