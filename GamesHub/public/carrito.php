@@ -7,7 +7,7 @@
     actualizar_puntos();
 
     /* no te permite entrar al carrito si no has iniciado sessión */
-    if(!isset($_SESSION["Carrito"]) || $_SESSION["Carrito"]==[]){
+    if(!isset($_SESSION["Carrito"])){
         header("location: Login.php?carro=true");
     }
     
